@@ -11,7 +11,7 @@ export const SITE = {
 
   // Website
   website: "", // isi setelah domain aktif
-  address: "Lombok, West Nusa Tenggara, Indonesia",
+  address: "Lombok Tengah, West Nusa Tenggara, Indonesia",
 
   // Assets
   logo: "/images/logo/logo.webp",
