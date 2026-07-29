@@ -1,56 +1,111 @@
+import { useEffect, useState } from "react";
 import { SITE } from "../../config/site";
 
+const images = [
+  "/images/hero/giligede.jpg",
+  "/images/hero/giligede1.jpg",
+  "/images/hero/hero.webp",
+  "/images/hero/hero-lombok.jpg",
+  "/images/hero/merese.jpg",
+];
+
 export default function Hero() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 7000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section
-  id="home"
-  className="relative min-h-screen overflow-hidden"
->
+      id="home"
+      className="relative min-h-screen overflow-hidden"
+    >
+      {/* Background Slider */}
+      <div className="absolute inset-0">
 
-      {/* Background Image */}
-      <img
-        src="/images/hero/hero.webp"
-        alt="Lombok Hero"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+        {images.map((image, index) => (
+          <img
+            key={image}
+            src={image}
+            alt={`Lombok ${index + 1}`}
+            className={`
+              absolute
+              inset-0
+              h-full
+              w-full
+              object-cover
+              transition-opacity
+              duration-[2000ms]
+              ease-in-out
+              ${index === current ? "opacity-100 animate-kenburns" : "opacity-0"}
+            `}
+          />
+        ))}
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-black/25" />
+      </div>
 
       {/* Content */}
-      <div className="relative z-10 h-screen max-w-7xl mx-auto px-8 flex items-center">
-        <div className="max-w-2xl -mt-32">
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 lg:px-8">
 
-          <p className="text-yellow-400 uppercase tracking-[6px] mb-4">
-            Welcome to Paradise
+        <div className="max-w-2xl">
+
+          <p className="mb-5 tracking-[8px] uppercase text-yellow-400 font-semibold">
+            Welcome To Paradise
           </p>
 
-          <h1 className="text-white text-7xl font-black leading-tight">
-            {SITE.name.split(" ")[0]}
-            <br />
-            {SITE.name.split(" ").slice(1).join(" ")}
+          <h1 className="text-5xl font-black leading-tight text-white md:text-7xl">
+            {SITE.name}
           </h1>
 
-          <p className="text-white/80 text-xl mt-6 max-w-xl">
+          <p className="mt-6 text-lg leading-8 text-white/90 md:text-xl">
             {SITE.description}
           </p>
 
-          <div className="mt-10 flex gap-4">
+          <div className="mt-10 flex flex-wrap gap-4">
+
             <a
               href={`https://wa.me/${SITE.whatsapp}`}
-              className="bg-yellow-400 hover:bg-yellow-300 px-8 py-4 rounded-full font-bold text-black"
+              className="rounded-full bg-yellow-400 px-8 py-4 font-bold text-black transition hover:bg-yellow-300"
             >
               Book Now
             </a>
 
-            <button className="border border-white text-white px-8 py-4 rounded-full">
+            <a
+              href="#tours"
+              className="rounded-full border border-white px-8 py-4 font-bold text-white transition hover:bg-white hover:text-black"
+            >
               Explore Tours
-            </button>
+            </a>
+
+          </div>
+
+          {/* Indicator */}
+
+          <div className="mt-12 flex gap-3">
+
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrent(index)}
+                className={`h-2 rounded-full transition-all duration-500 ${
+                  current === index
+                    ? "w-10 bg-yellow-400"
+                    : "w-2 bg-white/50"
+                }`}
+              />
+            ))}
+
           </div>
 
         </div>
-      </div>
 
+      </div>
     </section>
   );
 }
