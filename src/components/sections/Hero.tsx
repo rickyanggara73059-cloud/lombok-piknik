@@ -9,7 +9,7 @@ export default function Hero() {
 
       {/* Background Image */}
       <img
-        src="/images/hero/hero-lombok.jpg"
+        src="/images/hero/hero.webp"
         alt="Lombok Hero"
         className="absolute inset-0 w-full h-full object-cover"
       />
