@@ -14,9 +14,9 @@ export const SITE = {
   address: "Lombok Tengah, West Nusa Tenggara, Indonesia",
 
   // Assets
-  logo: "/images/logo/logo.webp",
-  heroImage: "/images/hero/hero-lombok.jpg",
-
+  logo: "/images/logo/logo.png",
+  heroImage: "/images/hero/hero.webp",
+  
   // Social Media
   facebook: "",
   instagram: "",
