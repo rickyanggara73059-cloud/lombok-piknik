@@ -4,7 +4,7 @@ import { SITE } from "../../config/site";
 const images = [
   "/images/hero/giligede.jpg",
   "/images/hero/giligede1.jpg",
-  "/images/hero/hero.webp",
+  "/images/hero/mtrinjani.jpg",
   "/images/hero/hero-lombok.jpg",
   "/images/hero/merese.jpg",
 ];
@@ -15,7 +15,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
-    }, 7000);
+    }, 12000);
 
     return () => clearInterval(timer);
   }, []);
