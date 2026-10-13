@@ -3,49 +3,44 @@ import type { GalleryItem } from "../types/gallery";
 export const gallery: GalleryItem[] = [
   {
     id: "gili-trawangan",
-    title: "Gili Trawangan",
+    title: "Turquoise tides",
     category: "Beach",
-    location: "North Lombok",
-    image: "/images/gallery/gili.jpg",
+    location: "Gili Trawangan, North Lombok",
+    image: "/images/gallery/gili-trawangan-aerial.jpg",
   },
-
   {
     id: "rinjani",
-    title: "Mount Rinjani",
+    title: "Under Rinjani",
     category: "Adventure",
-    location: "Sembalun Lombok",
-    image: "/images/gallery/rinjani.jpg",
+    location: "Sembalun, East Lombok",
+    image: "/images/gallery/rinjani-sembalun-valley.jpg",
   },
-
   {
     id: "mandalika",
-    title: "Mandalika Beach",
+    title: "The southern curve",
     category: "Beach",
-    location: "South Lombok",
-    image: "/images/gallery/mandalika.jpg",
+    location: "Kuta Lombok, Central Lombok",
+    image: "/images/gallery/kuta-lombok-coast.jpg",
   },
-
   {
     id: "waterfall",
-    title: "Tiu Kelep Waterfall",
+    title: "Water in the forest",
     category: "Nature",
-    location: "North Lombok",
-    image: "/images/gallery/waterfall.jpg",
+    location: "Lombok, West Nusa Tenggara",
+    image: "/images/gallery/lombok-waterfall.jpg",
   },
-
   {
     id: "sasak",
-    title: "Sasak Culture",
+    title: "Welcome to Sade",
     category: "Culture",
-    location: "Central Lombok",
-    image: "/images/gallery/sasak.jpg",
+    location: "Sade, Central Lombok",
+    image: "/images/gallery/foto8.jpeg",
   },
-
   {
     id: "sembalun",
-    title: "Sembalun Village",
+    title: "Bale Adat Desa Beleq",
     category: "Village",
-    location: "North Lombok",
-    image: "/images/gallery/pink.jpg",
+    location: "Sembalun Lawang",
+    image: "/images/gallery/foto3.jpeg",
   },
 ];
