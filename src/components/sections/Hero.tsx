@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { SITE } from "../../config/site";
 
 const images = [
-  "/images/hero/giligede.jpg",
-  "/images/hero/giligede1.jpg",
-  "/images/hero/mtrinjani.jpg",
-  "/images/hero/hero-lombok.jpg",
-  "/images/hero/merese.jpg",
+  "/images/hero/lombok-beach.jpg",
+  "/images/hero/lombok-waterfall.jpg",
+  "/images/hero/komodo-padarisland.jpeg",
+  "/images/hero/komodo-pink-beach.jpeg",
+  "/images/hero/komodo-coast.jpeg",
 ];
 
 export default function Hero() {
