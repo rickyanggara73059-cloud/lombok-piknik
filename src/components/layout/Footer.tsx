@@ -103,10 +103,6 @@ export default function Footer() {
             </p>
 
             <p>
-              📞 {SITE.phone}
-            </p>
-
-            <p>
               ✉️ {SITE.email}
             </p>
 

@@ -1,13 +1,13 @@
 import { Helmet } from "react-helmet-async";
 
-import Navbar from "../components/layout/Navbar";
-import Footer from "../components/layout/Footer";
+
+
 
 import Container from "../components/common/Container";
 import SectionTitle from "../components/common/SectionTitle";
 import PackageCard from "../components/cards/PackageCard";
 
-import { products } from "../data/products";
+import { tourCatalogue } from "../data/tourCatalogue";
 
 import { SITE } from "../config/site";
 
@@ -19,10 +19,12 @@ export default function Tours() {
 
       <Helmet>
 
-        <title>
-          Lombok Tour Packages | {SITE.name}
-        </title>
+        <title>{`Lombok Tour Packages | ${SITE.name}`}</title>
 
+
+        <link rel="canonical" href={`${SITE.website.replace(/\/$/, "")}/tours`} />
+        <meta property="og:url" content={`${SITE.website.replace(/\/$/, "")}/tours`} />
+                <meta name="robots" content="index, follow" />
 
         <meta
           name="description"
@@ -37,7 +39,7 @@ export default function Tours() {
 
 
 
-      <Navbar />
+
 
 
       <main className="bg-gray-50 min-h-screen">
@@ -120,7 +122,7 @@ export default function Tours() {
               "
             >
 
-              {products.map((product)=>(
+              {tourCatalogue.map((product)=>(
 
                 <PackageCard
 
@@ -146,7 +148,7 @@ export default function Tours() {
 
 
 
-      <Footer />
+
 
 
     </>

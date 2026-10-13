@@ -2,25 +2,23 @@ import fs from "fs";
 import path from "path";
 
 
-const SITE_URL = "https://lombokpiknik.com";
+const SITE_URL = "https://lombok-piknik.vercel.app";
 
 
 const staticPages = [
-  "",
-  "/#tours",
-  "/#gallery",
-  "/#contact"
+  "/",
+  "/tours"
 ];
 
 
 // ambil data tour manual
 const tours = [
-  "gili-3-islands-tour-lombok",
-  "sembalun-rinjani-experience-lombok",
-  "kuta-mandalika-tour-lombok",
-  "lombok-waterfall-adventure",
-  "mount-rinjani-trekking-lombok",
-  "lombok-city-tour-souvenir"
+  "lombok-island-5d4n",
+  "lombok-island-4d3n",
+  "north-lombok-3d2n",
+  "whale-shark-sumbawa",
+  "komodo-sailing-3d2n",
+  "lombok-labuan-bajo-4d3n"
 ];
 
 

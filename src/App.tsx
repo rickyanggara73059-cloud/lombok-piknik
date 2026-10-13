@@ -6,11 +6,11 @@ import Footer from "./components/layout/Footer";
 import Hero from "./components/sections/Hero";
 import TourSection from "./components/sections/TourSection";
 import Gallery from "./components/sections/Gallery";
-import Testimonials from "./components/sections/Testimonials";
 import FAQ from "./components/sections/FAQ";
 import Contact from "./components/sections/Contact";
 
 import TourDetail from "./pages/TourDetail";
+import Tours from "./pages/Tours";
 
 import { Helmet } from "react-helmet-async";
 
@@ -26,7 +26,6 @@ function Home() {
       <Hero />
       <TourSection />
       <Gallery />
-      <Testimonials />
       <FAQ />
       <Contact />
     </>
@@ -41,9 +40,7 @@ function App() {
 
       <Helmet>
 
-        <title>
-          {SEO.title}
-        </title>
+        <title>{SEO.title}</title>
 
 
         <meta
@@ -78,14 +75,10 @@ function App() {
 
         <meta
           property="og:url"
-          content="https://lombokpiknik.com"
+          content="https://lombok-piknik.vercel.app/"
         />
 
 
-        <meta
-          property="og:image"
-          content="/images/og-image.jpg"
-        />
 
 
         <meta
@@ -123,6 +116,7 @@ function App() {
 
 
       <Routes>
+        <Route path="/tours" element={<Tours />} />
 
         <Route
           path="/"

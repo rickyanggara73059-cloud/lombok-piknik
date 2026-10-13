@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { X, MapPin, Clock3, Star, ArrowRight } from "lucide-react";
 
-import type { Product } from "../../data/products";
+import type { TourCatalogueProduct } from "../../data/tourCatalogue";
 
-import { formatIdr } from "../../utils/formatCurrency";
+import { formatTourDisplayPrice, formatTourPriceText } from "../../utils/tourPriceDisplay";
+import { getGuestOptions } from "../../utils/tourBooking";
 import { SITE } from "../../config/site";
 
 
 interface PackageDetailModalProps {
 
-  product: Product;
+  product: TourCatalogueProduct;
 
   isOpen: boolean;
 
@@ -31,7 +32,9 @@ export default function PackageDetailModal({
   if (!isOpen) return null;
 
 
-  const totalPrice = product.priceIdr * pax;
+  const isSpeedboat = product.priceBasis === "per_boat";
+  const guests = isSpeedboat && !getGuestOptions(product).includes(pax) ? product.groupRange.min : pax;
+  const totalPrice = isSpeedboat ? product.priceIdr : product.priceIdr * guests;
 
 
   const whatsappMessage = encodeURIComponent(
@@ -43,13 +46,14 @@ Package:
 ${product.title}
 
 Guest:
-${pax} Pax
+${guests} Pax
 
-Price / Pax:
-${formatIdr(product.priceIdr)}
+${isSpeedboat ? "Provisional price per boat:" : "Estimated price / Pax:"}
+${formatTourDisplayPrice(product)}
 
-Total Price:
-${formatIdr(totalPrice)}
+${isSpeedboat ? "Provisional total:" : "Estimated total price:"}
+${formatTourDisplayPrice(product, totalPrice)}
+${isSpeedboat ? "Price and schedule pending operator verification." : "USD estimates are converted from the original IDR amounts and rounded independently."}
 
 Please send me more information.
 `
@@ -182,7 +186,7 @@ Please send me more information.
 
 
           <p className="mt-6 text-gray-600 leading-7">
-            {product.description}
+            {formatTourPriceText(product.description)}
           </p>
 
 
@@ -203,7 +207,7 @@ Please send me more information.
 
 
             <select
-              value={pax}
+              value={guests}
               onChange={(e)=>setPax(Number(e.target.value))}
               className="
                 mt-3
@@ -216,6 +220,7 @@ Please send me more information.
               "
             >
 
+              {isSpeedboat ? getGuestOptions(product).map((count) => <option key={count} value={count}>{count} Pax</option>) : <>
               <option value={1}>
                 1 Pax
               </option>
@@ -239,6 +244,7 @@ Please send me more information.
               <option value={6}>
                 6 Pax
               </option>
+              </>}
 
             </select>
 
@@ -259,7 +265,7 @@ Please send me more information.
           >
 
             <p className="text-sm text-gray-500">
-              Total Price ({pax} Pax)
+              {isSpeedboat ? "Provisional total" : "Estimated total price"} ({guests} Pax)
             </p>
 
 
@@ -271,7 +277,7 @@ Please send me more information.
                 text-yellow-500
               "
             >
-              {formatIdr(totalPrice)}
+              {formatTourDisplayPrice(product, totalPrice)}
             </p>
 
 

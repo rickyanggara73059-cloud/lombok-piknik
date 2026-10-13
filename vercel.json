@@ -1,0 +1,37 @@
+﻿{
+    "headers":  [
+                    {
+                        "source":  "/tour/private-speedboat-labuan-bajo-1-5-persons",
+                        "headers":  [
+                                        {
+                                            "key":  "X-Robots-Tag",
+                                            "value":  "noindex, nofollow"
+                                        }
+                                    ]
+                    },
+                    {
+                        "source":  "/tour/private-speedboat-labuan-bajo-6-10-persons",
+                        "headers":  [
+                                        {
+                                            "key":  "X-Robots-Tag",
+                                            "value":  "noindex, nofollow"
+                                        }
+                                    ]
+                    },
+                    {
+                        "source":  "/tour/private-speedboat-labuan-bajo-11-15-persons",
+                        "headers":  [
+                                        {
+                                            "key":  "X-Robots-Tag",
+                                            "value":  "noindex, nofollow"
+                                        }
+                                    ]
+                    }
+                ],
+    "rewrites":  [
+                     {
+                         "destination":  "/index.html",
+                         "source":  "/(.*)"
+                     }
+                 ]
+}

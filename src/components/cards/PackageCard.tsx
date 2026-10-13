@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-import type { Product } from "../../data/products";
+import type { TourCatalogueProduct } from "../../data/tourCatalogue";
+import { formatTourDisplayPrice, formatTourPriceText } from "../../utils/tourPriceDisplay";
 
-import { formatIdr } from "../../utils/formatCurrency";
+
 import { SITE } from "../../config/site";
 
 import Card from "../common/Card";
@@ -17,7 +18,7 @@ import {
 
 
 interface PackageCardProps {
-  product: Product;
+  product: TourCatalogueProduct;
 }
 
 
@@ -26,19 +27,19 @@ export default function PackageCard({
 }: PackageCardProps) {
 
 
-  const usdPrice = Math.round(
-    product.priceIdr / 17000
-  );
+  const isSpeedboat = product.priceBasis === "per_boat";
+
 
 
   const whatsappMessage = encodeURIComponent(
-    product.whatsappMessage
+    formatTourPriceText(product.whatsappMessage)
   );
 
 
   return (
 
     <motion.div
+      className={isSpeedboat ? "h-full min-w-0" : undefined}
 
       initial={{
         opacity: 0,
@@ -65,18 +66,18 @@ export default function PackageCard({
     >
 
       <Card
-        className="
+        className={`${isSpeedboat ? "h-full flex flex-col min-w-0" : ""}
           overflow-hidden
           group
           transition
           hover:shadow-2xl
-        "
+        `}
       >
 
 
         {/* IMAGE */}
 
-        <div className="relative overflow-hidden">
+        <div className={isSpeedboat ? "relative overflow-hidden aspect-[4/3] shrink-0 bg-gray-50" : `relative overflow-hidden`}>
 
 
           {product.featured && (
@@ -103,24 +104,25 @@ export default function PackageCard({
 
 
 
-          <img
+          {product.image ? <img
 
-            src={product.image}
+            src={product.image ?? undefined}
 
             alt={product.title}
 
             loading="lazy"
+            style={isSpeedboat ? { objectPosition: product.imagePosition } : undefined}
 
-            className="
+            className={isSpeedboat ? "h-full w-full object-cover transition duration-500 group-hover:scale-110" : `
               h-64
               w-full
               object-cover
               transition
               duration-500
               group-hover:scale-110
-            "
+            `}
 
-          />
+          /> : <div className={isSpeedboat ? "h-full w-full flex items-center justify-center text-gray-500" : `h-64 w-full flex items-center justify-center text-gray-500`}>Reference image pending</div>}
 
 
         </div>
@@ -131,7 +133,7 @@ export default function PackageCard({
 
         {/* CONTENT */}
 
-        <div className="p-6">
+        <div className={isSpeedboat ? "p-6 flex flex-1 flex-col min-w-0" : `p-6`}>
 
 
           <div
@@ -236,14 +238,14 @@ export default function PackageCard({
 
 
           <p
-            className="
+            className={isSpeedboat ? "mt-5 line-clamp-3 min-h-[60px] text-sm text-gray-600 break-words" : `
               mt-5
               line-clamp-3
               text-sm
               text-gray-600
-            "
+            `}
           >
-            {product.description}
+            {formatTourPriceText(product.description)}
 
           </p>
 
@@ -255,13 +257,13 @@ export default function PackageCard({
           {/* PRICE + BUTTON */}
 
           <div
-            className="
+            className={isSpeedboat ? "mt-auto pt-8 flex flex-col items-start gap-4 min-w-0" : `
               mt-8
               flex
               items-end
               justify-between
               gap-3
-            "
+            `}
           >
 
 
@@ -274,20 +276,20 @@ export default function PackageCard({
                   text-gray-400
                 "
               >
-                Starting From / Pax
+                {product.priceBasis === "per_boat" ? "Provisional price per boat" : "Starting From / Pax"}
               </p>
 
 
 
               <p
-                className="
+                className={isSpeedboat ? "text-lg font-black text-yellow-500 whitespace-nowrap" : `
                   text-lg
                   font-black
                   text-yellow-500
-                "
+                `}
               >
 
-                {formatIdr(product.priceIdr)}
+                {isSpeedboat ? formatTourDisplayPrice(product).replace(" per boat", " / boat") : formatTourDisplayPrice(product)}
 
               </p>
 
@@ -300,7 +302,7 @@ export default function PackageCard({
                 "
               >
 
-                ≈ USD {usdPrice} / pax
+                {product.priceBasis === "per_boat" ? "Pending operator verification" : "Estimated USD price"}
 
               </p>
 
@@ -313,11 +315,11 @@ export default function PackageCard({
 
 
             <div
-              className="
+              className={isSpeedboat ? "flex gap-2 shrink-0 w-full justify-between" : `
                 flex
                 gap-2
                 shrink-0
-              "
+              `}
             >
 
 

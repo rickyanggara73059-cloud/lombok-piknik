@@ -33,7 +33,7 @@ export default function Contact() {
   function sendWhatsApp() {
 
     const text = `
-Hello Lombok Piknik 👋
+Hello Lombok Awesome Tour 👋
 
 Name:
 ${form.name}

@@ -12,10 +12,6 @@ export const MENU = [
     path: "#gallery",
   },
   {
-    name: "Testimonials",
-    path: "#testimonials",
-  },
-  {
     name: "FAQ",
     path: "#faq",
   },

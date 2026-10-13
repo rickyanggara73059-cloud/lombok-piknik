@@ -1,22 +1,18 @@
 export const SITE = {
   // Basic
-  name: "Lombok Piknik",
+  name: "Lombok Awesome Tour",
   tagline: "Explore Lombok Paradise",
   description: "Lombok Tour & Travel Experience",
 
   // Contact
-  whatsapp: "6282147314910",
-  phone: "+62 821-4731-4910",
-  email: "info@lombokpiknik.com",
+  whatsapp: "6287816231153",
+  email: "rinjaniawesome123@gmail.com",
 
   // Website
-  website: "", // isi setelah domain aktif
-  address: "Lombok Tengah, West Nusa Tenggara, Indonesia",
+  website: "https://lombok-piknik.vercel.app/", // temporary canonical host approved for release review
+  address: "Senaru, Lombok Utara",
 
   // Assets
-  logo: "/images/logo/logo.png",
-  heroImage: "/images/hero/hero.webp",
-  
   // Social Media
   facebook: "",
   instagram: "",

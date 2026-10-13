@@ -1,22 +1,16 @@
 export const SITE = {
-  name: "Lombok Piknik",
+  name: "Lombok Awesome Tour",
 
   tagline: "Explore Lombok Paradise",
 
   description:
     "Discover the beauty of Lombok with private tours, airport transfers, Gili Islands, Rinjani Trekking, and unforgettable travel experiences.",
 
-  whatsapp: "6282147314910",
+  whatsapp: "6287816231153",
 
-  phone: "+62 821-4731-4910",
+  email: "rinjaniawesome123@gmail.com",
 
-  email: "info@lombokpiknik.com",
+  address: "Senaru, Lombok Utara",
 
-  address: "Lombok, Nusa Tenggara Barat",
-
-  logo: "/images/logo/logo.jpg",
-
-  heroImage: "/images/hero/hero-lombok.jpg",
-
-  website: "https://lombokpiknik.com",
+  website: "https://lombok-piknik.vercel.app/",
 };

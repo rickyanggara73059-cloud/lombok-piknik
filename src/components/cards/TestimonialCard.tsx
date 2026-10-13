@@ -60,10 +60,7 @@ export default function TestimonialCard({
 
         <img
 
-          src={
-            testimonial.image ||
-            "/images/default-user.jpg"
-          }
+          src={testimonial.image ?? ""}
 
           alt={testimonial.name}
 

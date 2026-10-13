@@ -7,15 +7,12 @@ export const travelAgencySchema = {
   name: SITE.name,
   url: SITE.website,
   description: SITE.description,
-  image: "/images/og-image.jpg",
-  logo: SITE.logo,
-  telephone: SITE.phone,
   email: SITE.email,
 
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Lombok",
-    addressRegion: "West Nusa Tenggara",
+    addressLocality: "Senaru",
+    addressRegion: "Lombok Utara",
     addressCountry: "ID",
   },
 

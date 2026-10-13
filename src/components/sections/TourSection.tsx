@@ -2,7 +2,7 @@ import Container from "../common/Container";
 import SectionTitle from "../common/SectionTitle";
 import PackageCard from "../cards/PackageCard";
 
-import { products } from "../../data/products";
+import { tourCatalogue } from "../../data/tourCatalogue";
 
 export default function TourSection() {
   return (
@@ -18,7 +18,7 @@ export default function TourSection() {
         />
 
         <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {products.map((product) => (
+          {tourCatalogue.map((product) => (
             <PackageCard
               key={product.id}
               product={product}

@@ -11,9 +11,11 @@ import {
 } from "lucide-react";
 
 
-import { products } from "../data/products";
+import { tourCatalogue } from "../data/tourCatalogue";
+import { formatTourDisplayPrice, formatTourPriceText } from "../utils/tourPriceDisplay";
 import { SITE } from "../config/site";
-import { formatIdr } from "../utils/formatCurrency";
+import { toEstimatedUsd } from "../utils/formatCurrency";
+import { getDefaultTierIndex, getGuestOptions, getTourBookingMessage, getTourQuote } from "../utils/tourBooking";
 
 
 export default function TourDetail() {
@@ -22,12 +24,13 @@ export default function TourDetail() {
   const { slug } = useParams();
 
 
-  const product = products.find(
+  const product = tourCatalogue.find(
     (item)=> item.slug === slug
   );
 
 
   const [pax,setPax] = useState(1);
+  const [selectedTier, setSelectedTier] = useState<number | undefined>();
 
 
 
@@ -47,33 +50,16 @@ export default function TourDetail() {
 
   }
 
+  const isPendingSpeedboat = product.priceBasis === "per_boat" && (product.sellingPriceStatus === "needs_confirmation" || ("operationalStatus" in product && product.operationalStatus === "needs_confirmation"));
+  const canonicalUrl = `${SITE.website.replace(/\/$/, "")}/tour/${product.slug}`;
 
-
-  const totalPrice =
-    product.priceIdr * pax;
-
-
-
-
+  const guestOptions = getGuestOptions(product);
+  const guests = guestOptions.includes(pax) ? pax : (guestOptions[0] ?? 1);
+  const tierIndex = selectedTier ?? getDefaultTierIndex(product);
+  const groupPricing = product.pricingTiers?.some((tier) => tier.groupSize !== undefined);
+  const quote = getTourQuote(product, guests, tierIndex);
   const whatsappMessage = encodeURIComponent(
-`Hello ${SITE.name} 👋
-
-I want to book:
-
-Package:
-${product.title}
-
-Guest:
-${pax} Pax
-
-Price / Pax:
-${formatIdr(product.priceIdr)}
-
-Total Price:
-${formatIdr(totalPrice)}
-
-Please send me more information.
-`
+    quote ? getTourBookingMessage(product, quote) : formatTourPriceText(product.whatsappMessage),
   );
 
 
@@ -87,16 +73,17 @@ Please send me more information.
 
     name:product.title,
 
-    description:product.description,
+    description:formatTourPriceText(product.description),
 
-    image:product.image,
+    image:product.image.startsWith("/") ? `${SITE.website.replace(/\/$/, "")}${product.image}` : product.image,
 
 
-    offers:{
+    ...(product.isPlaceholder ? {} : { offers:{
       "@type":"Offer",
-      price:product.priceIdr,
-      priceCurrency:"IDR"
-    }
+      price:toEstimatedUsd(product.priceIdr),
+      priceCurrency:"USD",
+      description:"Estimated USD display price; original IDR base retained."
+    } })
 
   };
 
@@ -108,16 +95,17 @@ Please send me more information.
 <>
 <Helmet>
 
-<title>
-{product.title} | {SITE.name}
-</title>
+<title>{`${product.title} | ${SITE.name}`}</title>
 
 
 <meta
 name="description"
-content={product.description}
+content={formatTourPriceText(product.description)}
 />
-
+<link rel="canonical" href={canonicalUrl} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={product.image.startsWith("/") ? `${SITE.website.replace(/\/$/, "")}${product.image}` : product.image} />
+<meta name="robots" content={isPendingSpeedboat ? "noindex, nofollow" : "index, follow"} />
 
 <script type="application/ld+json">
 {JSON.stringify(schema)}
@@ -132,9 +120,9 @@ content={product.description}
 <section className="bg-white">
 
 
-<img
+{product.image ? <img
 
-src={product.image}
+src={product.image ?? undefined}
 
 alt={product.title}
 
@@ -144,7 +132,7 @@ w-full
 object-cover
 "
 
-/>
+/> : <div className="h-[420px] w-full flex items-center justify-center text-gray-500">Reference image pending</div>}
 
 
 
@@ -159,6 +147,7 @@ py-16
 
 
 
+<div className="mb-8 flex flex-wrap items-center justify-between gap-4">
 <Link
 
 to="/"
@@ -168,7 +157,6 @@ inline-flex
 items-center
 gap-2
 text-yellow-500
-mb-8
 "
 
 >
@@ -179,6 +167,11 @@ Back Home
 
 </Link>
 
+<a href="#tour-booking" className="inline-flex items-center gap-2 text-yellow-500 lg:hidden">
+  Booking
+</a>
+</div>
+
 
 
 
@@ -186,8 +179,9 @@ Back Home
 <div
 className="
 grid
-gap-12
-lg:grid-cols-[2fr_1fr]
+gap-8
+lg:grid-cols-[minmax(0,13fr)_minmax(0,7fr)]
+lg:items-start
 "
 >
 
@@ -196,7 +190,7 @@ lg:grid-cols-[2fr_1fr]
 
 {/* LEFT */}
 
-<div>
+<div className="min-w-0 break-words">
 
 
 <span
@@ -285,10 +279,13 @@ Overview
 
 <p className="mt-4 text-gray-600 leading-8">
 
-{product.description}
+{formatTourPriceText(product.description)}
 
 </p>
 
+{product.overview ? (
+  <p className="mt-4 text-gray-600 leading-8">{formatTourPriceText(product.overview)}</p>
+) : null}
 
 
 
@@ -299,19 +296,19 @@ Highlights
 </h2>
 
 
-<ul className="mt-5 space-y-3">
+<ul className={`mt-5 grid gap-3 ${product.highlights.length > 1 ? "sm:grid-cols-2" : ""}`}>
 
 
 {product.highlights.map(item=>(
 
 <li
 key={item}
-className="flex gap-3 text-gray-600"
+className="flex min-w-0 gap-3 text-gray-600"
 >
 
 <CheckCircle
 size={18}
-className="text-yellow-500"
+className="shrink-0 text-yellow-500"
 />
 
 {item}
@@ -322,6 +319,59 @@ className="text-yellow-500"
 
 
 </ul>
+
+{product.itinerary?.length ? (
+  <>
+    <h2 className="mt-10 text-2xl font-bold">Itinerary</h2>
+    {product.itinerary.map((day, dayIndex) => (
+      <div key={`${dayIndex}-${day.title}`}>
+        <h3 className="mt-6 font-bold">
+          {/^Day\s+\d+/i.test(day.title) ? day.title : `Day ${dayIndex + 1}: ${day.title}`}
+        </h3>
+        <ol className="mt-5 space-y-3">
+          {day.entries.map((entry, entryIndex) => (
+            <li key={`${dayIndex}-${entryIndex}`} className="text-gray-600 leading-8">{entry}</li>
+          ))}
+        </ol>
+      </div>
+    ))}
+  </>
+) : null}
+
+{product.included.length ? (
+  <>
+    <h2 className="mt-10 text-2xl font-bold">Inclusions</h2>
+    <ul className="mt-5 space-y-3">
+      {product.included.map((item, index) => (
+        <li key={index} className="flex gap-3 text-gray-600">
+          <CheckCircle size={18} className="text-yellow-500" />{item}
+        </li>
+      ))}
+    </ul>
+  </>
+) : null}
+
+{product.mealNotes?.length ? (
+  <>
+    <h2 className="mt-10 text-2xl font-bold">Meal Notes</h2>
+    <ul className="mt-5 space-y-3">
+      {product.mealNotes.map((note, index) => (
+        <li key={index} className="text-gray-600 leading-8">{note}</li>
+      ))}
+    </ul>
+  </>
+) : null}
+
+{product.excludes?.length ? (
+  <>
+    <h2 className="mt-10 text-2xl font-bold">Exclusions</h2>
+    <ul className="mt-5 space-y-3">
+      {product.excludes.map((item, index) => (
+        <li key={index} className="text-gray-600 leading-8">{item}</li>
+      ))}
+    </ul>
+  </>
+) : null}
 
 
 
@@ -334,19 +384,26 @@ className="text-yellow-500"
 {/* RIGHT */}
 
 <aside
+id="tour-booking"
 className="
 h-fit
+min-w-0
+scroll-mt-24
 rounded-3xl
 border
 p-8
 shadow-lg
+lg:sticky
+lg:top-24
+lg:max-h-[calc(100dvh-7rem)]
+lg:overflow-y-auto
 "
 >
 
 
 <p className="text-gray-500">
 
-Starting From / Pax
+{product.priceBasis === "per_boat" ? "Provisional price per boat" : product.pricingTiers?.length ? "Price / Pax" : "Starting From / Pax"}
 
 </p>
 
@@ -360,15 +417,56 @@ text-yellow-500
 "
 >
 
-{formatIdr(product.priceIdr)}
+{formatTourDisplayPrice(product, quote?.unitPrice ?? product.priceIdr)}
 
 </h2>
 
+{product.priceBasis !== "per_boat" ? <p className="mt-3 text-sm text-gray-500">Estimated USD display; totals converted from the original IDR amount and rounded independently.</p> : null}
+
+<p className="mt-6 flex items-center gap-2 text-gray-600">
+  <Clock3 size={18} className="shrink-0" />
+  {product.duration}
+</p>
+
+{product.included.length ? (
+  <div className="mt-6">
+    <p className="font-bold">Package includes</p>
+    <ul className="mt-3 space-y-3 text-sm">
+      {product.included.slice(0, 3).map((item, index) => (
+        <li key={index} className="flex min-w-0 gap-3 text-gray-600">
+          <CheckCircle size={18} className="shrink-0 text-yellow-500" />
+          <span className="min-w-0 break-words">{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+) : null}
 
 
 
+
+{product.minimum ? (
+  <p className="mt-6 text-gray-600">Minimum: {product.minimum}</p>
+) : null}
+
+{product.pricingTiers?.length && !groupPricing ? (
+  <>
+    <label htmlFor="tour-price-option" className="mt-6 block font-bold">Price Option</label>
+    <select
+      id="tour-price-option"
+      value={tierIndex}
+      onChange={(event) => setSelectedTier(Number(event.target.value))}
+      className="mt-3 min-w-0 w-full max-w-full rounded-xl border px-4 py-3"
+    >
+      {product.pricingTiers.map((tier, index) => (
+        <option key={tier.name} value={index}>{tier.name} — {formatTourDisplayPrice(product, tier.priceIdr)} / pax</option>
+      ))}
+    </select>
+  </>
+) : null}
 
 <label
+htmlFor="tour-guests"
 className="
 mt-6
 block
@@ -383,14 +481,17 @@ Number of Guests
 
 
 <select
+id="tour-guests"
 
-value={pax}
+value={guests}
 
 onChange={(e)=>setPax(Number(e.target.value))}
 
 className="
 mt-3
+min-w-0
 w-full
+max-w-full
 rounded-xl
 border
 px-4
@@ -400,7 +501,7 @@ py-3
 >
 
 
-{[1,2,3,4,5,6,7,8,9,10].map(num=>(
+{guestOptions.map(num=>(
 
 <option
 key={num}
@@ -431,7 +532,7 @@ p-5
 
 <p className="text-sm text-gray-500">
 
-Total Price ({pax} Pax)
+Total Price ({guests} Pax)
 
 </p>
 
@@ -445,7 +546,7 @@ text-yellow-500
 "
 >
 
-{formatIdr(totalPrice)}
+{quote ? formatTourDisplayPrice(product, quote.totalPrice) : "Please confirm the price"}
 
 </p>
 
