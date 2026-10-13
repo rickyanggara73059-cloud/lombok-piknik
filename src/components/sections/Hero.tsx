@@ -1,12 +1,58 @@
 import { useEffect, useState } from "react";
 import { SITE } from "../../config/site";
 
-const images = [
-  "/images/hero/lombok-beach.webp",
-  "/images/hero/lombok-waterfall.webp",
-  "/images/hero/komodo-padarisland.webp",
-  "/images/hero/komodo-pink-beach.webp",
-  "/images/hero/komodo-coast.webp",
+const images: { src: string; desktopSrc?: string; alt: string; position: string }[] = [
+  {
+    "src": "/images/hero/hero-yar07628.webp",
+    "desktopSrc": "/images/hero/hero-yar07628-desktop.webp",
+    "alt": "Lanskap bukit dan teluk pada cahaya golden hour",
+    "position": "object-[55%_55%] lg:object-[50%_50%]"
+  },
+  {
+    "src": "/images/hero/hero-dji-0501.webp",
+    "desktopSrc": "/images/hero/hero-dji-0501-desktop.webp",
+    "alt": "Garis pantai berpasir merah muda dan laut turquoise",
+    "position": "object-[52%_60%] lg:object-[50%_50%]"
+  },
+  {
+    "src": "/images/hero/hero-dsc05461.webp",
+    "alt": "Wisatawan menikmati panorama bukit dan teluk",
+    "position": "object-[48%_58%] lg:object-[50%_55%]"
+  },
+  {
+    "src": "/images/hero/hero-wil07136.webp",
+    "desktopSrc": "/images/hero/hero-wil07136-desktop.webp",
+    "alt": "Satwa komodo dengan latar laut",
+    "position": "object-[60%_65%] lg:object-[60%_50%]"
+  },
+  {
+    "src": "/images/hero/hero-dsc05537.webp",
+    "desktopSrc": "/images/hero/hero-dsc05537-desktop.webp",
+    "alt": "Wisatawan duduk di bukit saat golden hour",
+    "position": "object-[54%_60%] lg:object-[50%_50%]"
+  },
+  {
+    "src": "/images/hero/hero-dji-0507.webp",
+    "desktopSrc": "/images/hero/hero-dji-0507-desktop.webp",
+    "alt": "Dua wisatawan bersantai di tepi pantai berpasir merah muda",
+    "position": "object-[50%_60%] lg:object-[50%_50%]"
+  },
+  {
+    "src": "/images/hero/hero-dscf8617.webp",
+    "desktopSrc": "/images/hero/hero-dscf8617-desktop.webp",
+    "alt": "Rombongan wisatawan di haluan kapal",
+    "position": "object-[46%_60%] lg:object-[50%_50%]"
+  },
+  {
+    "src": "/images/hero/hero-gp016686.webp",
+    "alt": "Pasangan wisatawan dengan latar panorama bukit dan teluk",
+    "position": "object-[49%_52%] lg:object-[50%_50%]"
+  },
+  {
+    "src": "/images/hero/hero-sunset-fca280.webp",
+    "alt": "Rombongan wisatawan di kapal dengan langit senja",
+    "position": "object-[54%_50%] lg:object-[50%_50%]"
+  }
 ];
 
 export default function Hero() {
@@ -29,26 +75,31 @@ export default function Hero() {
       <div className="absolute inset-0 w-full min-w-0 max-w-full overflow-hidden">
 
         {images.map((image, index) => (
-          <img
-            key={image}
-            src={image}
-            alt={`Lombok ${index + 1}`}
-            loading={index === 0 ? "eager" : "lazy"}
-            fetchPriority={index === 0 ? "high" : "auto"}
-            decoding="async"
-            className={`
-              absolute
-              inset-0
-              h-full
-              w-full
-              max-w-full
-              object-cover
-              transition-opacity
-              duration-[2000ms]
-              ease-in-out
-              ${index === current ? "opacity-100 animate-kenburns" : "opacity-0"}
-            `}
-          />
+          <picture key={image.src}>
+            {image.desktopSrc && (
+              <source media="(min-width: 1024px)" srcSet={image.desktopSrc} />
+            )}
+            <img
+              src={image.src}
+              alt={image.alt}
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchPriority={index === 0 ? "high" : "auto"}
+              decoding="async"
+              className={`
+                absolute
+                inset-0
+                h-full
+                w-full
+                max-w-full
+                object-cover
+                ${image.position}
+                transition-opacity
+                duration-[2000ms]
+                ease-in-out
+                ${index === current ? "opacity-100 animate-kenburns" : "opacity-0"}
+              `}
+            />
+          </picture>
         ))}
 
         <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-black/25" />

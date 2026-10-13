@@ -1,0 +1,200 @@
+{
+  "source": "User-provided original files in public/images/destinations/labuan-bajo-komodo/",
+  "photographer": "Not documented",
+  "license": "Not documented; commercial permission not verified",
+  "destination": "Existing PHOTO_MAP.md identifies broad Labuan Bajo / Komodo / Flores-area candidates. Exact sublocations not asserted.",
+  "processing": "EXIF orientation applied; WebP quality 80; maximum width 2200 / portrait height 2400; six subject-based desktop crops at 16:10. Originals untouched.",
+  "slides": [
+    {
+      "name": "YAR07628.jpeg",
+      "base": "hero-yar07628",
+      "alt": "Lanskap bukit dan teluk pada cahaya golden hour",
+      "focus": 0.65,
+      "position": "object-[55%_55%] lg:object-[50%_50%]",
+      "src": "/images/hero/hero-yar07628.webp",
+      "desktopSrc": "/images/hero/hero-yar07628-desktop.webp",
+      "crop": {
+        "left": 0,
+        "top": 2657,
+        "width": 4672,
+        "height": 2920
+      }
+    },
+    {
+      "name": "DJI_0501.jpeg",
+      "base": "hero-dji-0501",
+      "alt": "Garis pantai berpasir merah muda dan laut turquoise",
+      "focus": 0.65,
+      "position": "object-[52%_60%] lg:object-[50%_50%]",
+      "src": "/images/hero/hero-dji-0501.webp",
+      "desktopSrc": "/images/hero/hero-dji-0501-desktop.webp",
+      "crop": {
+        "left": 0,
+        "top": 1686,
+        "width": 2250,
+        "height": 1406
+      }
+    },
+    {
+      "name": "DSC05461.jpeg",
+      "base": "hero-dsc05461",
+      "alt": "Wisatawan menikmati panorama bukit dan teluk",
+      "position": "object-[48%_58%] lg:object-[50%_55%]",
+      "src": "/images/hero/hero-dsc05461.webp"
+    },
+    {
+      "name": "WIL07136.jpeg",
+      "base": "hero-wil07136",
+      "alt": "Satwa komodo dengan latar laut",
+      "focus": 0.68,
+      "position": "object-[60%_65%] lg:object-[60%_50%]",
+      "src": "/images/hero/hero-wil07136.webp",
+      "desktopSrc": "/images/hero/hero-wil07136-desktop.webp",
+      "crop": {
+        "left": 0,
+        "top": 2456,
+        "width": 4128,
+        "height": 2580
+      }
+    },
+    {
+      "name": "DSC05537.jpeg",
+      "base": "hero-dsc05537",
+      "alt": "Wisatawan duduk di bukit saat golden hour",
+      "focus": 0.65,
+      "position": "object-[54%_60%] lg:object-[50%_50%]",
+      "src": "/images/hero/hero-dsc05537.webp",
+      "desktopSrc": "/images/hero/hero-dsc05537-desktop.webp",
+      "crop": {
+        "left": 0,
+        "top": 2275,
+        "width": 4000,
+        "height": 2500
+      }
+    },
+    {
+      "name": "DJI_0507.jpeg",
+      "base": "hero-dji-0507",
+      "alt": "Dua wisatawan bersantai di tepi pantai berpasir merah muda",
+      "focus": 0.58,
+      "position": "object-[50%_60%] lg:object-[50%_50%]",
+      "src": "/images/hero/hero-dji-0507.webp",
+      "desktopSrc": "/images/hero/hero-dji-0507-desktop.webp",
+      "crop": {
+        "left": 0,
+        "top": 1505,
+        "width": 2250,
+        "height": 1406
+      }
+    },
+    {
+      "name": "DSCF8617.jpeg",
+      "base": "hero-dscf8617",
+      "alt": "Rombongan wisatawan di haluan kapal",
+      "focus": 0.64,
+      "position": "object-[46%_60%] lg:object-[50%_50%]",
+      "src": "/images/hero/hero-dscf8617.webp",
+      "desktopSrc": "/images/hero/hero-dscf8617-desktop.webp",
+      "crop": {
+        "left": 0,
+        "top": 2240,
+        "width": 4000,
+        "height": 2500
+      }
+    },
+    {
+      "name": "GP016686_1776425071390.jpeg",
+      "base": "hero-gp016686",
+      "alt": "Pasangan wisatawan dengan latar panorama bukit dan teluk",
+      "position": "object-[49%_52%] lg:object-[50%_50%]",
+      "src": "/images/hero/hero-gp016686.webp"
+    },
+    {
+      "name": "fca28007783bd1bb6f800103eb72ea9d.jpg",
+      "base": "hero-sunset-fca280",
+      "alt": "Rombongan wisatawan di kapal dengan langit senja",
+      "position": "object-[54%_50%] lg:object-[50%_50%]",
+      "src": "/images/hero/hero-sunset-fca280.webp"
+    }
+  ],
+  "files": [
+    {
+      "name": "YAR07628.jpeg",
+      "file": "/images/hero/hero-yar07628.webp",
+      "bytes": 252006,
+      "width": 1600,
+      "height": 2400,
+      "desktopFile": "/images/hero/hero-yar07628-desktop.webp",
+      "desktopBytes": 236092
+    },
+    {
+      "name": "DJI_0501.jpeg",
+      "file": "/images/hero/hero-dji-0501.webp",
+      "bytes": 295968,
+      "width": 1350,
+      "height": 2400,
+      "desktopFile": "/images/hero/hero-dji-0501-desktop.webp",
+      "desktopBytes": 323966
+    },
+    {
+      "name": "DSC05461.jpeg",
+      "file": "/images/hero/hero-dsc05461.webp",
+      "bytes": 353764,
+      "width": 2200,
+      "height": 1467,
+      "desktopBytes": null
+    },
+    {
+      "name": "WIL07136.jpeg",
+      "file": "/images/hero/hero-wil07136.webp",
+      "bytes": 183572,
+      "width": 1600,
+      "height": 2400,
+      "desktopFile": "/images/hero/hero-wil07136-desktop.webp",
+      "desktopBytes": 213186
+    },
+    {
+      "name": "DSC05537.jpeg",
+      "file": "/images/hero/hero-dsc05537.webp",
+      "bytes": 453848,
+      "width": 1600,
+      "height": 2400,
+      "desktopFile": "/images/hero/hero-dsc05537-desktop.webp",
+      "desktopBytes": 433368
+    },
+    {
+      "name": "DJI_0507.jpeg",
+      "file": "/images/hero/hero-dji-0507.webp",
+      "bytes": 402738,
+      "width": 1350,
+      "height": 2400,
+      "desktopFile": "/images/hero/hero-dji-0507-desktop.webp",
+      "desktopBytes": 176106
+    },
+    {
+      "name": "DSCF8617.jpeg",
+      "file": "/images/hero/hero-dscf8617.webp",
+      "bytes": 200824,
+      "width": 1600,
+      "height": 2400,
+      "desktopFile": "/images/hero/hero-dscf8617-desktop.webp",
+      "desktopBytes": 185652
+    },
+    {
+      "name": "GP016686_1776425071390.jpeg",
+      "file": "/images/hero/hero-gp016686.webp",
+      "bytes": 413004,
+      "width": 2200,
+      "height": 1925,
+      "desktopBytes": null
+    },
+    {
+      "name": "fca28007783bd1bb6f800103eb72ea9d.jpg",
+      "file": "/images/hero/hero-sunset-fca280.webp",
+      "bytes": 247844,
+      "width": 2200,
+      "height": 1473,
+      "desktopBytes": null
+    }
+  ]
+}
