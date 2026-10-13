@@ -122,27 +122,10 @@ export default function Hero() {
             {SITE.description}
           </p>
 
-          <div className="mt-6 flex min-w-0 max-w-full flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-4 lg:mt-10">
-
-            <a
-              href={`https://wa.me/${SITE.whatsapp}`}
-              className="inline-flex min-h-11 items-center justify-center rounded-full bg-yellow-400 px-6 py-3 text-center font-bold text-black transition hover:bg-yellow-300 sm:px-8 sm:py-4"
-            >
-              Book Now
-            </a>
-
-            <a
-              href="#tours"
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-white px-6 py-3 text-center font-bold text-white transition hover:bg-white hover:text-black sm:px-8 sm:py-4"
-            >
-              Explore Tours
-            </a>
-
-          </div>
 
           {/* Indicator */}
 
-          <div className="mt-6 flex gap-2 sm:mt-8 sm:gap-3 lg:mt-12">
+          <div className="mt-5 flex gap-2 sm:mt-6 sm:gap-3 lg:mt-8">
 
             {images.map((_, index) => (
               <button
