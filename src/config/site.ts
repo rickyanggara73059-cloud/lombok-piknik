@@ -1,18 +1,22 @@
 export const SITE = {
   // Basic
   name: "Lombok Awesome Tour",
-  tagline: "Explore Lombok Paradise",
-  description: "Lombok Tour & Travel Experience",
+  tagline: "Explore Lombok",
+  description: "Explore Lombok Island 5D4N, Lombok Island 4D3N, North Lombok 3D2N and Whale Shark Sumbawa tours with Lombok Awesome Tour.",
 
   // Contact
   whatsapp: "6287816231153",
-  email: "rinjaniawesome123@gmail.com",
+  phone: "+62 878-1623-1153",
+  email: "hello@awesometour.id",
 
   // Website
-  website: "https://lombok-piknik.vercel.app/", // temporary canonical host approved for release review
-  address: "Senaru, Lombok Utara",
+  website: "https://lombok-piknik.vercel.app/", // production canonical host
+  address: "Lombok, West Nusa Tenggara, Indonesia",
 
   // Assets
+  logo: "/images/branding/Lombok Awesome Tour Badge (1).png",
+  heroImage: "/images/hero/hero.webp",
+
   // Social Media
   facebook: "",
   instagram: "",
@@ -30,8 +34,8 @@ export const SITE = {
   ],
 
   // Business
-  businessHours: "Mo-Su 08:00-20:00",
-  priceRange: "$$",
+  businessHours: "",
+  priceRange: "",
 
   // Location
   latitude: "",

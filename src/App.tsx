@@ -6,6 +6,7 @@ import Footer from "./components/layout/Footer";
 import Hero from "./components/sections/Hero";
 import TourSection from "./components/sections/TourSection";
 import Gallery from "./components/sections/Gallery";
+import Testimonials from "./components/sections/Testimonials";
 import FAQ from "./components/sections/FAQ";
 import Contact from "./components/sections/Contact";
 
@@ -26,6 +27,7 @@ function Home() {
       <Hero />
       <TourSection />
       <Gallery />
+      <Testimonials />
       <FAQ />
       <Contact />
     </>
@@ -40,7 +42,9 @@ function App() {
 
       <Helmet>
 
-        <title>{SEO.title}</title>
+        <title>
+          {SEO.title}
+        </title>
 
 
         <meta
@@ -79,6 +83,10 @@ function App() {
         />
 
 
+        <meta
+          property="og:image"
+          content="/images/og-image.jpg"
+        />
 
 
         <meta

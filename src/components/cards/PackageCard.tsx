@@ -39,7 +39,7 @@ export default function PackageCard({
   return (
 
     <motion.div
-      className={isSpeedboat ? "h-full min-w-0" : undefined}
+      className={isSpeedboat ? "h-full w-full min-w-0 max-w-full" : "w-full min-w-0 max-w-full"}
 
       initial={{
         opacity: 0,
@@ -67,6 +67,7 @@ export default function PackageCard({
 
       <Card
         className={`${isSpeedboat ? "h-full flex flex-col min-w-0" : ""}
+          w-full min-w-0 max-w-full [overflow-wrap:anywhere]
           overflow-hidden
           group
           transition
@@ -77,7 +78,7 @@ export default function PackageCard({
 
         {/* IMAGE */}
 
-        <div className={isSpeedboat ? "relative overflow-hidden aspect-[4/3] shrink-0 bg-gray-50" : `relative overflow-hidden`}>
+        <div className={isSpeedboat ? "relative w-full min-w-0 max-w-full overflow-hidden aspect-[4/3] shrink-0 bg-gray-50" : `relative w-full min-w-0 max-w-full overflow-hidden`}>
 
 
           {product.featured && (
@@ -113,9 +114,9 @@ export default function PackageCard({
             loading="lazy"
             style={isSpeedboat ? { objectPosition: product.imagePosition } : undefined}
 
-            className={isSpeedboat ? "h-full w-full object-cover transition duration-500 group-hover:scale-110" : `
+            className={isSpeedboat ? "h-full w-full max-w-full object-cover transition duration-500 group-hover:scale-110" : `
               h-64
-              w-full
+              w-full max-w-full
               object-cover
               transition
               duration-500
@@ -133,7 +134,7 @@ export default function PackageCard({
 
         {/* CONTENT */}
 
-        <div className={isSpeedboat ? "p-6 flex flex-1 flex-col min-w-0" : `p-6`}>
+        <div className={isSpeedboat ? "w-full max-w-full p-6 flex flex-1 flex-col min-w-0" : `w-full max-w-full p-6 min-w-0`}>
 
 
           <div
@@ -141,12 +142,14 @@ export default function PackageCard({
               flex
               items-center
               justify-between
+              min-w-0 gap-2
             "
           >
 
 
             <span
               className="
+                min-w-0
                 text-sm
                 font-bold
                 uppercase
@@ -163,6 +166,7 @@ export default function PackageCard({
                 flex
                 items-center
                 gap-1
+                shrink-0
                 text-sm
                 text-yellow-500
               "
@@ -212,21 +216,21 @@ export default function PackageCard({
           >
 
 
-            <div className="flex items-center gap-2">
+            <div className="flex min-w-0 items-center gap-2">
 
-              <MapPin size={16}/>
+              <MapPin size={16} className="shrink-0"/>
 
-              {product.location}
+              <span className="min-w-0">{product.location}</span>
 
             </div>
 
 
 
-            <div className="flex items-center gap-2">
+            <div className="flex min-w-0 items-center gap-2">
 
-              <Clock3 size={16}/>
+              <Clock3 size={16} className="shrink-0"/>
 
-              {product.duration}
+              <span className="min-w-0">{product.duration}</span>
 
             </div>
 
@@ -257,9 +261,10 @@ export default function PackageCard({
           {/* PRICE + BUTTON */}
 
           <div
-            className={isSpeedboat ? "mt-auto pt-8 flex flex-col items-start gap-4 min-w-0" : `
+            className={isSpeedboat ? "mt-auto w-full max-w-full pt-8 flex flex-col items-start gap-4 min-w-0" : `
               mt-8
               flex
+              w-full min-w-0 max-w-full flex-wrap
               items-end
               justify-between
               gap-3
@@ -268,7 +273,7 @@ export default function PackageCard({
 
 
 
-            <div>
+            <div className="min-w-0 max-w-full">
 
               <p
                 className="
@@ -282,7 +287,7 @@ export default function PackageCard({
 
 
               <p
-                className={isSpeedboat ? "text-lg font-black text-yellow-500 whitespace-nowrap" : `
+                className={isSpeedboat ? "text-lg font-black text-yellow-500 whitespace-normal" : `
                   text-lg
                   font-black
                   text-yellow-500
@@ -315,10 +320,10 @@ export default function PackageCard({
 
 
             <div
-              className={isSpeedboat ? "flex gap-2 shrink-0 w-full justify-between" : `
+              className={isSpeedboat ? "flex min-w-0 max-w-full flex-wrap gap-2 w-full justify-between" : `
                 flex
                 gap-2
-                shrink-0
+                min-w-0 max-w-full flex-wrap
               `}
             >
 
@@ -329,6 +334,7 @@ export default function PackageCard({
                 to={`/tour/${product.slug}`}
 
                 className="
+                  min-w-0 max-w-full whitespace-normal
                   rounded-full
                   border-2
                   border-yellow-400

@@ -1,135 +1,95 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { SITE } from "../../config/site";
 import { MENU } from "../../data/menu";
+
+const NAVBAR_MENU = MENU.filter((item) => item.name !== "Testimonials");
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full bg-black/30 backdrop-blur-xl border-b border-white/10">
-
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-
-        {/* Logo */}
-        <a href="#home">
-
-          <h1 className="text-3xl font-black text-white">
+    <header className="fixed inset-x-0 top-0 w-full max-w-full z-50 border-b border-white/10 bg-black/40 text-white backdrop-blur-xl">
+      <div className="mx-auto flex w-full min-w-0 min-h-16 max-w-7xl items-center justify-between gap-3 px-4 py-2 sm:px-6 lg:h-20 lg:px-8 lg:py-0">
+        <a
+          href="#home"
+          className="flex min-h-11 min-w-0 max-w-full flex-1 flex-col justify-center lg:flex-none"
+          onClick={() => setOpen(false)}
+          aria-label={`${SITE.name} home`}
+        >
+          <span className="block max-w-full whitespace-normal break-words text-lg font-black leading-tight sm:text-xl lg:whitespace-nowrap lg:text-3xl">
             {SITE.name.split(" ")[0]}{" "}
             <span className="text-yellow-400">
               {SITE.name.split(" ").slice(1).join(" ")}
             </span>
-          </h1>
-
-          <p className="text-xs text-gray-300">
+          </span>
+          <span className="mt-0.5 block text-[10px] leading-tight text-gray-300 sm:text-xs">
             {SITE.tagline}
-          </p>
-
+          </span>
         </a>
 
-
-        {/* Desktop Menu */}
-        <nav className="hidden items-center gap-8 text-white md:flex">
-
-          {MENU.map((item) => (
+        <nav
+          aria-label="Main navigation"
+          className="hidden shrink-0 items-center gap-8 text-white lg:flex"
+        >
+          {NAVBAR_MENU.map((item) => (
             <a
               key={item.name}
               href={item.path}
-              className="
-                transition
-                hover:text-yellow-400
-              "
+              className="inline-flex min-h-11 min-w-11 items-center justify-center transition hover:text-yellow-400"
             >
               {item.name}
             </a>
           ))}
-
         </nav>
 
-
-        {/* Book Button */}
         <a
           href={`https://wa.me/${SITE.whatsapp}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="
-            hidden
-            rounded-full
-            bg-yellow-400
-            px-5
-            py-3
-            font-bold
-            text-black
-            transition
-            hover:bg-yellow-300
-            md:block
-          "
+          className="hidden shrink-0 rounded-full bg-yellow-400 px-5 py-3 font-bold text-black transition hover:bg-yellow-300 lg:block"
         >
           Book Now
         </a>
 
-
-        {/* Mobile Button */}
         <button
-          className="text-3xl text-white md:hidden"
-          onClick={() => setOpen(!open)}
+          type="button"
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-2xl text-white transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400 lg:hidden"
+          onClick={() => setOpen((value) => !value)}
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
         >
-          {open ? "✕" : "☰"}
+          <span aria-hidden="true">{open ? "×" : "☰"}</span>
         </button>
-
-
       </div>
 
-
-      {/* Mobile Menu */}
       {open && (
-
-        <div className="bg-black text-white md:hidden">
-
-          {MENU.map((item) => (
-
+        <nav
+          id="mobile-navigation"
+          aria-label="Mobile navigation"
+          className="w-full min-w-0 max-w-full border-t border-white/10 bg-slate-950/95 px-4 pb-4 pt-2 shadow-xl lg:hidden"
+        >
+          {NAVBAR_MENU.map((item) => (
             <a
               key={item.name}
               href={item.path}
               onClick={() => setOpen(false)}
-              className="
-                block
-                border-b
-                border-white/10
-                p-4
-                transition
-                hover:bg-white/10
-                hover:text-yellow-400
-              "
+              className="flex min-h-12 items-center border-b border-white/10 px-2 text-base transition hover:bg-white/10 hover:text-yellow-400"
             >
               {item.name}
             </a>
-
           ))}
-
 
           <a
             href={`https://wa.me/${SITE.whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="
-              m-4
-              block
-              rounded-full
-              bg-yellow-400
-              px-5
-              py-3
-              text-center
-              font-bold
-              text-black
-            "
+            className="mt-4 flex min-h-12 items-center justify-center rounded-full bg-yellow-400 px-5 py-3 text-center font-bold text-black transition hover:bg-yellow-300"
           >
             Book Now
           </a>
-
-        </div>
-
+        </nav>
       )}
-
     </header>
   );
 }

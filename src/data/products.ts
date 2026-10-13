@@ -103,7 +103,7 @@ export const products: Product[] = [
       }
     ],
     "imageSource": "https://unsplash.com/photos/2uGBupFOJBo",
-    "whatsappMessage": "Hello, I want to book Lombok Island 5D4N."
+    "whatsappMessage": "Hello Lombok Awesome Tour, I want to book Lombok Island 5D4N."
   },
   {
     "id": "lombok-island-4d3n",
@@ -191,7 +191,7 @@ export const products: Product[] = [
       }
     ],
     "imageSource": "https://unsplash.com/photos/a-man-swimming-next-to-a-turtle-in-the-ocean-i4IeFFM62gA",
-    "whatsappMessage": "Hello, I want to book Lombok Island 4D3N."
+    "whatsappMessage": "Hello Lombok Awesome Tour, I want to book Lombok Island 4D3N."
   },
   {
     "id": "north-lombok-3d2n",
@@ -269,7 +269,7 @@ export const products: Product[] = [
       }
     ],
     "imageSource": "https://unsplash.com/photos/a-scenic-view-of-a-mountain-with-clouds-in-the-sky-ZTIfh-q97fM",
-    "whatsappMessage": "Hello, I want to book North Lombok 3D2N. Minimum: 4 persons."
+    "whatsappMessage": "Hello Lombok Awesome Tour, I want to book North Lombok 3D2N. Minimum: 4 persons."
   },
   {
     "id": "whale-shark-sumbawa",
@@ -312,7 +312,7 @@ export const products: Product[] = [
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
     },
-    "whatsappMessage": "Hello, I want to book Whale Shark Sumbawa. Minimum: 2 persons."
+    "whatsappMessage": "Hello Lombok Awesome Tour, I want to book Whale Shark Sumbawa. Minimum: 2 persons."
   }
   ,
   {
@@ -345,7 +345,7 @@ export const products: Product[] = [
       { title: "Day 2", entries: ["Padar Island", "Long Beach / Pink Beach", "Komodo Island", "Taka Makassar", "Manta Point"] },
       { title: "Day 3", entries: ["Siaba / Sebayur Island"] }
     ],
-    whatsappMessage: "Hello, I would like information about Sailing Trip Komodo 3D2N. Please confirm the group-size rate: 10 pax IDR 6,500,000 / pax; 11 pax IDR 6,250,000 / pax; 12 pax IDR 6,000,000 / pax; 13 pax IDR 5,500,000 / pax. Minimum 10 pax."
+    whatsappMessage: "Hello Lombok Awesome Tour, I would like information about Sailing Trip Komodo 3D2N. Please confirm the group-size rate: 10 pax IDR 6,500,000 / pax; 11 pax IDR 6,250,000 / pax; 12 pax IDR 6,000,000 / pax; 13 pax IDR 5,500,000 / pax. Minimum 10 pax."
   },
   {
     id: "lombok-labuan-bajo-sailing-4d3n",
@@ -378,6 +378,6 @@ export const products: Product[] = [
       { title: "Day 3", entries: ["Manta", "Taka Makassar", "Komodo", "Pink Beach", "Padar Island", "Kalong Island", "Overnight sekitar Rinca / Kalong"] },
       { title: "Day 4", entries: ["Strawberry Rock", "Majarite", "Kelor Island", "Finish Labuan Bajo"] }
     ],
-    whatsappMessage: "Hello, I would like information about Lombok – Labuan Bajo Sailing Trip 4D3N. Starting price is IDR 4,750,000 / pax for Sharing Room Deck; other cabin prices vary. Please confirm cabin selection and current details."
+    whatsappMessage: "Hello Lombok Awesome Tour, I would like information about Lombok – Labuan Bajo Sailing Trip 4D3N. Starting price is IDR 4,750,000 / pax for Sharing Room Deck; other cabin prices vary. Please confirm cabin selection and current details."
   }
 ];

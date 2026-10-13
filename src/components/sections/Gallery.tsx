@@ -15,7 +15,7 @@ export default function Gallery() {
 
     <section
       id="gallery"
-      className="bg-white py-24"
+      className="w-full min-w-0 bg-white py-24"
     >
 
       <Container>
@@ -29,8 +29,8 @@ export default function Gallery() {
 
         <div
           className="
-            grid
-            gap-8
+            grid min-w-0 grid-cols-1
+            gap-5 sm:gap-8
             md:grid-cols-2
             lg:grid-cols-3
           "
@@ -82,7 +82,7 @@ export default function Gallery() {
 
             className="
               max-h-[90vh]
-              max-w-6xl
+              min-w-0 max-w-full lg:max-w-6xl
               rounded-3xl
               object-contain
               shadow-2xl

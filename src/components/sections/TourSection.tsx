@@ -8,16 +8,16 @@ export default function TourSection() {
   return (
     <section
       id="tours"
-      className="py-24 bg-gradient-to-b from-gray-50 to-white"
+      className="w-full min-w-0 max-w-full py-24 bg-gradient-to-b from-gray-50 to-white"
     >
-      <Container>
+      <Container className="min-w-0 [overflow-wrap:anywhere]">
         <SectionTitle
           subtitle="Our Packages"
           title="Popular Tour Packages"
           description="Choose the best Lombok experience with professional local guides."
         />
 
-        <div className="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-12 grid w-full min-w-0 max-w-full grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
           {tourCatalogue.map((product) => (
             <PackageCard
               key={product.id}

@@ -44,7 +44,7 @@ export default function GalleryCard({
       onClick={onClick}
 
       className="
-        group
+        group w-full min-w-0 max-w-full
         relative
         cursor-pointer
         overflow-hidden
@@ -69,7 +69,7 @@ export default function GalleryCard({
         }}
 
         className="
-          h-72
+          aspect-[4/3] h-auto md:aspect-auto md:h-72
           w-full
           object-cover
         "
@@ -100,16 +100,16 @@ export default function GalleryCard({
         className="
           absolute
           bottom-0
-          left-0
+          left-0 right-0 min-w-0 [overflow-wrap:anywhere]
           z-10
-          p-6
+          p-5 sm:p-6
           text-white
         "
       >
 
         <h3
           className="
-            text-2xl
+            text-xl sm:text-2xl
             font-bold
           "
         >

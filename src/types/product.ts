@@ -11,7 +11,7 @@ export interface Product {
   location: string;
   duration: string;
 
-  // Published display price; never an operator/cabin source rate.
+  // Lombok Awesome Tour selling price; never an operator/cabin source rate.
   priceIdr: number;
   priceUsd: number;
 

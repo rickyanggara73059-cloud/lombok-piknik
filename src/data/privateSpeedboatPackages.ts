@@ -102,5 +102,5 @@ export const privateSpeedboatPackageDrafts: PrivateSpeedboatPackageDraft[] = [
   included: [...included],
   excludes: [...excludes],
   itinerary: [{ title: "Day 1 — Reference schedule; pending operator verification", entries: [...referenceItinerary] }],
-  whatsappMessage: `Hello, I would like information about Private Speedboat Labuan Bajo for ${min}–${max} persons. Provisional reference price: ${formatDraftBoatPrice(usdDisplayPrice)}, pending operator approval. Please confirm the price, schedule, availability, and booking details.`,
+  whatsappMessage: `Hello Lombok Awesome Tour, I would like information about Private Speedboat Labuan Bajo for ${min}–${max} persons. Provisional reference price: ${formatDraftBoatPrice(usdDisplayPrice)}, pending operator approval. Please confirm the price, schedule, availability, and booking details.`,
 }));

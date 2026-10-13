@@ -6,6 +6,9 @@ import { testimonials } from "../../data/testimonials";
 
 
 export default function Testimonials() {
+  if (testimonials.length === 0) {
+    return null;
+  }
 
 
   return (

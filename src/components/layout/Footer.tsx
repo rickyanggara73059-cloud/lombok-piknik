@@ -4,21 +4,21 @@ import { MENU } from "../../data/menu";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white">
+    <footer className="w-full min-w-0 bg-black text-white [overflow-wrap:anywhere]">
 
       <div className="
         mx-auto
-        grid
+        grid w-full min-w-0 grid-cols-1
         max-w-7xl
         gap-10
-        px-6
+        px-6 sm:px-8 lg:px-6
         py-16
         md:grid-cols-3
       ">
 
 
         {/* Brand */}
-        <div>
+        <div className="min-w-0">
 
           <h2 className="text-3xl font-black">
             {SITE.name.split(" ")[0]}{" "}
@@ -56,7 +56,7 @@ export default function Footer() {
 
 
         {/* Menu */}
-        <div>
+        <div className="min-w-0">
 
           <h3 className="mb-5 text-xl font-bold">
             Quick Links
@@ -89,7 +89,7 @@ export default function Footer() {
 
 
         {/* Contact */}
-        <div>
+        <div className="min-w-0">
 
           <h3 className="mb-5 text-xl font-bold">
             Contact
@@ -100,6 +100,10 @@ export default function Footer() {
 
             <p>
               📍 {SITE.address}
+            </p>
+
+            <p>
+              📞 {SITE.phone}
             </p>
 
             <p>
@@ -118,7 +122,7 @@ export default function Footer() {
       <div className="
         border-t
         border-white/10
-        py-6
+        px-6 py-6
         text-center
         text-sm
         text-gray-500

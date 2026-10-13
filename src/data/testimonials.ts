@@ -1,4 +1,4 @@
 import type { Testimonial } from "../types/testimonial";
 
-// Customer testimonials stay unpublished until their image assets are verified.
+// Pending verified customer testimonials; do not publish unverified reviews.
 export const testimonials: Testimonial[] = [];
