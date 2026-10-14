@@ -85,8 +85,9 @@ function App() {
 
         <meta
           property="og:image"
-          content="/images/og-image.jpg"
+          content="https://lombok-piknik.vercel.app/images/branding/lombok-awesome-tour-og.png"
         />
+        <meta name="twitter:image" content="https://lombok-piknik.vercel.app/images/branding/lombok-awesome-tour-og.png" />
 
 
         <meta
