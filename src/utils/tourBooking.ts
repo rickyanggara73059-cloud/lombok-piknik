@@ -47,7 +47,7 @@ export type TourQuote = NonNullable<ReturnType<typeof getTourQuote>>;
 
 export function getTourBookingMessage(product: TourCatalogueProduct, quote: TourQuote): string {
   if (product.priceBasis === "per_boat") {
-    return `${formatTourPriceText(product.whatsappMessage)}\n\nGuest: ${quote.guests} persons\nProvisional total: ${formatTourDisplayPrice(product)}\nPrice and schedule pending operator verification. Please confirm availability and booking details.`;
+    return `${formatTourPriceText(product.whatsappMessage, product)}\n\nGuest: ${quote.guests} persons\nProvisional total: ${formatTourDisplayPrice(product)}\nPrice and schedule pending operator verification. Please confirm availability and booking details.`;
   }
-  return `${formatTourPriceText(product.whatsappMessage)}\n\nPackage: ${product.title}${quote.tierName ? `\nPrice option: ${quote.tierName}` : ""}\nGuest: ${quote.guests} Pax\nEstimated price / Pax: ${formatTourDisplayPrice(product, quote.unitPrice)}\nEstimated total price: ${formatTourDisplayPrice(product, quote.totalPrice)}\n\nPlease confirm availability and booking details.`;
+  return `${formatTourPriceText(product.whatsappMessage, product)}\n\nPackage: ${product.title}${quote.tierName ? `\nPrice option: ${quote.tierName}` : ""}\nGuest: ${quote.guests} Pax\nEstimated price / Pax: ${formatTourDisplayPrice(product, quote.unitPrice)}\nEstimated total price: ${formatTourDisplayPrice(product, quote.totalPrice, quote.guests)}\n\nPlease confirm availability and booking details.`;
 }

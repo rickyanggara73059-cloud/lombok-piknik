@@ -12,9 +12,8 @@ import {
 
 
 import { tourCatalogue } from "../data/tourCatalogue";
-import { formatTourDisplayPrice, formatTourPriceText } from "../utils/tourPriceDisplay";
+import { formatTourDisplayPrice, formatTourPriceText, getTourUsdPrice } from "../utils/tourPriceDisplay";
 import { SITE } from "../config/site";
-import { toEstimatedUsd } from "../utils/formatCurrency";
 import { getDefaultTierIndex, getGuestOptions, getTourBookingMessage, getTourQuote } from "../utils/tourBooking";
 
 
@@ -59,7 +58,7 @@ export default function TourDetail() {
   const groupPricing = product.pricingTiers?.some((tier) => tier.groupSize !== undefined);
   const quote = getTourQuote(product, guests, tierIndex);
   const whatsappMessage = encodeURIComponent(
-    quote ? getTourBookingMessage(product, quote) : formatTourPriceText(product.whatsappMessage),
+    quote ? getTourBookingMessage(product, quote) : formatTourPriceText(product.whatsappMessage, product),
   );
 
 
@@ -73,14 +72,14 @@ export default function TourDetail() {
 
     name:product.title,
 
-    description:formatTourPriceText(product.description),
+    description:formatTourPriceText(product.description, product),
 
     image:product.image.startsWith("/") ? `${SITE.website.replace(/\/$/, "")}${product.image}` : product.image,
 
 
     ...(product.isPlaceholder ? {} : { offers:{
       "@type":"Offer",
-      price:toEstimatedUsd(product.priceIdr),
+      price:getTourUsdPrice(product),
       priceCurrency:"USD",
       description:"Estimated USD display price; original IDR base retained."
     } })
@@ -100,7 +99,7 @@ export default function TourDetail() {
 
 <meta
 name="description"
-content={formatTourPriceText(product.description)}
+content={formatTourPriceText(product.description, product)}
 />
 <link rel="canonical" href={canonicalUrl} />
 <meta property="og:url" content={canonicalUrl} />
@@ -279,12 +278,12 @@ Overview
 
 <p className="mt-4 text-gray-600 leading-8">
 
-{formatTourPriceText(product.description)}
+{formatTourPriceText(product.description, product)}
 
 </p>
 
 {product.overview ? (
-  <p className="mt-4 text-gray-600 leading-8">{formatTourPriceText(product.overview)}</p>
+  <p className="mt-4 text-gray-600 leading-8">{formatTourPriceText(product.overview, product)}</p>
 ) : null}
 
 
@@ -546,7 +545,7 @@ text-yellow-500
 "
 >
 
-{quote ? formatTourDisplayPrice(product, quote.totalPrice) : "Please confirm the price"}
+{quote ? formatTourDisplayPrice(product, quote.totalPrice, quote.guests) : "Please confirm the price"}
 
 </p>
 

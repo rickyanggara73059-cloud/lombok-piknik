@@ -52,7 +52,7 @@ ${isSpeedboat ? "Provisional price per boat:" : "Estimated price / Pax:"}
 ${formatTourDisplayPrice(product)}
 
 ${isSpeedboat ? "Provisional total:" : "Estimated total price:"}
-${formatTourDisplayPrice(product, totalPrice)}
+${formatTourDisplayPrice(product, totalPrice, guests)}
 ${isSpeedboat ? "Price and schedule pending operator verification." : "USD estimates are converted from the original IDR amounts and rounded independently."}
 
 Please send me more information.
@@ -186,7 +186,7 @@ Please send me more information.
 
 
           <p className="mt-6 text-gray-600 leading-7">
-            {formatTourPriceText(product.description)}
+            {formatTourPriceText(product.description, product)}
           </p>
 
 
@@ -277,7 +277,7 @@ Please send me more information.
                 text-yellow-500
               "
             >
-              {formatTourDisplayPrice(product, totalPrice)}
+              {formatTourDisplayPrice(product, totalPrice, guests)}
             </p>
 
 

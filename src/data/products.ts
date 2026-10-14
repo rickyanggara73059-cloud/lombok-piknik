@@ -2,7 +2,7 @@ import type { Product } from "../types/product";
 export type { Product } from "../types/product";
 
 // No verified ratings/review counts: 0 means unavailable, not a customer score.
-// USD values are estimates using the existing application rate, not official USD prices.
+// USD selling estimates include the approved US$28 adjustment once per person.
 export const products: Product[] = [
   {
     "id": "lombok-island-5d4n",
@@ -12,7 +12,7 @@ export const products: Product[] = [
     "location": "Lombok",
     "duration": "5 Days / 4 Nights",
     "priceIdr": 6000000,
-    "priceUsd": 353,
+    "priceUsd": 381,
     "rating": 0,
     "reviewsCount": 0,
     "image": "https://images.unsplash.com/photo-1527369977102-ea8c4a693f85",
@@ -113,7 +113,7 @@ export const products: Product[] = [
     "location": "Lombok",
     "duration": "4 Days / 3 Nights",
     "priceIdr": 5000000,
-    "priceUsd": 294,
+    "priceUsd": 322,
     "rating": 0,
     "reviewsCount": 0,
     "image": "https://images.unsplash.com/photo-1676938007570-cdff052a9841",
@@ -201,7 +201,7 @@ export const products: Product[] = [
     "location": "North Lombok",
     "duration": "3 Days / 2 Nights",
     "priceIdr": 2350000,
-    "priceUsd": 138,
+    "priceUsd": 166,
     "rating": 0,
     "reviewsCount": 0,
     "image": "https://images.unsplash.com/photo-1725163938260-68e159b65fdc",
@@ -279,7 +279,7 @@ export const products: Product[] = [
     "location": "Saleh Bay, Sumbawa",
     "duration": "1 Day",
     "priceIdr": 3000000,
-    "priceUsd": 176,
+    "priceUsd": 204,
     "rating": 0,
     "reviewsCount": 0,
     "image": "/images/tours/whale-shark/saleh-bay-whale-shark.jpg",
@@ -323,7 +323,7 @@ export const products: Product[] = [
     location: "Labuan Bajo & Komodo",
     duration: "3 Days / 2 Nights",
     priceIdr: 5500000,
-    priceUsd: 324,
+    priceUsd: 352,
     rating: 0,
     reviewsCount: 0,
     image: "/images/destinations/labuan-bajo-komodo/DSC05461.jpeg",
@@ -355,7 +355,7 @@ export const products: Product[] = [
     location: "Lombok & Labuan Bajo",
     duration: "4 Days / 3 Nights",
     priceIdr: 4750000,
-    priceUsd: 279,
+    priceUsd: 307,
     rating: 0,
     reviewsCount: 0,
     image: "/images/destinations/labuan-bajo-komodo/YAR07634.jpeg",

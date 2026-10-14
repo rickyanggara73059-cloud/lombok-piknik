@@ -73,7 +73,7 @@ for (const product of tourCatalogue) {
       const quote = booking.getTourQuote(product, guests, tier);
       assert(quote);
       assert.equal(quote.totalPrice, quote.unitPrice * (isBoat ? 1 : guests));
-      const formatted = formatTourDisplayPrice(product, quote.totalPrice);
+      const formatted = formatTourDisplayPrice(product, quote.totalPrice, quote.guests);
       if (!isBoat) assert.equal(toEstimatedUsd(quote.totalPrice), Math.round(quote.totalPrice / 17000));
       const message = booking.getTourBookingMessage(product, quote);
       assert(message.includes(formatTourDisplayPrice(product, quote.unitPrice)));
@@ -89,8 +89,11 @@ assert.deepEqual(products.map(p => p.priceIdr), [6000000, 5000000, 2350000, 3000
 for (const [i, schema] of productSchema.entries()) {
   assert.equal(schema.offers.priceCurrency, "USD");
   assert(!Object.hasOwn(schema.offers, "availability"));
-  assert.equal(schema.offers.price, toEstimatedUsd(products[i].priceIdr));
+  assert.equal(schema.offers.price, products[i].priceUsd);
   noIdrPrice(JSON.stringify(schema), "Product schema");
 }
 assert.equal(formatTourPriceText("IDR 6,250,000 / pax"), "US$368 / pax");
 console.log("PASS all 9 cards/modals, generated WhatsApp messages, all tiers/passenger selections, internal IDR totals and USD structured offers");
+
+assert.deepEqual(products.map(p => p.priceUsd), [381,322,166,204,352,307]);
+for (const p of products) { assert.equal(p.priceUsd - toEstimatedUsd(p.priceIdr),28); for (const g of booking.getGuestOptions(p)) { for (let i=0;i<(p.pricingTiers?.length ?? 1);i++) {const q=booking.getTourQuote(p,g,i); assert.equal(formatTourDisplayPrice(p,q.totalPrice,g),"US$"+(toEstimatedUsd(q.totalPrice)+28*g).toLocaleString("en-US"));}}}

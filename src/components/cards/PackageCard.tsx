@@ -32,7 +32,7 @@ export default function PackageCard({
 
 
   const whatsappMessage = encodeURIComponent(
-    formatTourPriceText(product.whatsappMessage)
+    formatTourPriceText(product.whatsappMessage, product)
   );
 
 
@@ -249,7 +249,7 @@ export default function PackageCard({
               text-gray-600
             `}
           >
-            {formatTourPriceText(product.description)}
+            {formatTourPriceText(product.description, product)}
 
           </p>
 

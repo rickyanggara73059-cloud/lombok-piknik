@@ -44,13 +44,13 @@ for (const product of products) {
     product.overview, ...(product.highlights ?? []), ...(product.included ?? []),
     ...(product.excludes ?? []), ...(product.mealNotes ?? []),
     ...(product.itinerary ?? []).flatMap((day) => day.entries)].filter(Boolean)) {
-    assert(html.includes(text(formatTourPriceText(value))), product.slug + ": missing content " + value);
+    assert(html.includes(text(formatTourPriceText(value, product))), product.slug + ": missing content " + value);
   }
   const guests = booking.getGuestOptions(product)[0];
   const quote = booking.getTourQuote(product, guests);
   assert(quote);
   const message = booking.getTourBookingMessage(product, quote);
-  assert(message.startsWith(formatTourPriceText(product.whatsappMessage)));
+  assert(message.startsWith(formatTourPriceText(product.whatsappMessage, product)));
   assert(html.includes(`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(message)}`));
   assert.equal(quote.totalPrice, quote.unitPrice * guests);
   assert.equal(booking.getTourQuote(product, 0), undefined);
@@ -60,7 +60,7 @@ for (const product of products) {
   assert(card.includes(`/tour/${product.slug}`));
   assert(card.includes(text(product.duration)));
   assert(card.includes(text(formatTourDisplayPrice(product))));
-  assert(card.includes(`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(formatTourPriceText(product.whatsappMessage))}`));
+  assert(card.includes(`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(formatTourPriceText(product.whatsappMessage, product))}`));
   assert(!card.includes("BEST SELLER"));
   console.log("PASS detail/card/content/booking:", product.slug);
 }
