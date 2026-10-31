@@ -8,6 +8,7 @@ import Hero from "./components/sections/Hero";
 import TourSection from "./components/sections/TourSection";
 import Gallery from "./components/sections/Gallery";
 import Testimonials from "./components/sections/Testimonials";
+import GoogleReviews from "./components/sections/GoogleReviews";
 import FAQ from "./components/sections/FAQ";
 import Contact from "./components/sections/Contact";
 
@@ -29,6 +30,7 @@ function Home() {
       <TourSection />
       <Gallery />
       <Testimonials />
+      <GoogleReviews />
       <FAQ />
       <Contact />
     </>
