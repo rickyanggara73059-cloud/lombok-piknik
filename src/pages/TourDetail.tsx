@@ -12,9 +12,9 @@ import {
 
 
 import { tourCatalogue } from "../data/tourCatalogue";
-import { formatTourDisplayPrice, formatTourPriceText, getTourUsdPrice } from "../utils/tourPriceDisplay";
+import { formatTourDisplayPrice, formatTourPriceText, getTourUsdPrice, isPriceOnRequest, REQUEST_PRICE_CTA } from "../utils/tourPriceDisplay";
 import { SITE } from "../config/site";
-import { getDefaultTierIndex, getGuestOptions, getTourBookingMessage, getTourQuote } from "../utils/tourBooking";
+import { getAvailabilityMessage, getDefaultTierIndex, getGuestOptions, getTourBookingMessage, getTourQuote } from "../utils/tourBooking";
 
 
 export default function TourDetail() {
@@ -28,6 +28,7 @@ export default function TourDetail() {
   );
 
 
+  const [tripType, setTripType] = useState("Open Trip");
   const [pax,setPax] = useState(1);
   const [selectedTier, setSelectedTier] = useState<number | undefined>();
 
@@ -56,9 +57,10 @@ export default function TourDetail() {
   const guests = guestOptions.includes(pax) ? pax : (guestOptions[0] ?? 1);
   const tierIndex = selectedTier ?? getDefaultTierIndex(product);
   const groupPricing = product.pricingTiers?.some((tier) => tier.groupSize !== undefined);
+  const cabin = product.cabinOptions?.[selectedTier ?? product.cabinOptions.length - 1];
   const quote = getTourQuote(product, guests, tierIndex);
   const whatsappMessage = encodeURIComponent(
-    quote ? getTourBookingMessage(product, quote) : formatTourPriceText(product.whatsappMessage, product),
+    isPriceOnRequest(product) ? getAvailabilityMessage(product, guests, product.tripTypes ? tripType : undefined, cabin) : quote ? getTourBookingMessage(product, quote) : formatTourPriceText(product.whatsappMessage, product),
   );
 
 
@@ -77,7 +79,7 @@ export default function TourDetail() {
     image:product.image.startsWith("/") ? `${SITE.website.replace(/\/$/, "")}${product.image}` : product.image,
 
 
-    ...(product.isPlaceholder ? {} : { offers:{
+    ...(product.isPlaceholder || isPriceOnRequest(product) ? {} : { offers:{
       "@type":"Offer",
       price:getTourUsdPrice(product),
       priceCurrency:"USD",
@@ -402,7 +404,7 @@ lg:overflow-y-auto
 
 <p className="text-gray-500">
 
-{product.priceBasis === "per_boat" ? "Provisional price per boat" : product.pricingTiers?.length ? "Price / Pax" : "Starting From / Pax"}
+{isPriceOnRequest(product) ? product.tripTypes?.join(" / ") : product.priceBasis === "per_boat" ? "Provisional price per boat" : product.pricingTiers?.length ? "Price / Pax" : "Starting From / Pax"}
 
 </p>
 
@@ -420,7 +422,7 @@ text-yellow-500
 
 </h2>
 
-{product.priceBasis !== "per_boat" ? <p className="mt-3 text-sm text-gray-500">Estimated USD display; totals converted from the original IDR amount and rounded independently.</p> : null}
+{!isPriceOnRequest(product) && product.priceBasis !== "per_boat" ? <p className="mt-3 text-sm text-gray-500">Estimated USD display; totals converted from the original IDR amount and rounded independently.</p> : null}
 
 <p className="mt-6 flex items-center gap-2 text-gray-600">
   <Clock3 size={18} className="shrink-0" />
@@ -448,7 +450,7 @@ text-yellow-500
   <p className="mt-6 text-gray-600">Minimum: {product.minimum}</p>
 ) : null}
 
-{product.pricingTiers?.length && !groupPricing ? (
+{!isPriceOnRequest(product) && product.pricingTiers?.length && !groupPricing ? (
   <>
     <label htmlFor="tour-price-option" className="mt-6 block font-bold">Price Option</label>
     <select
@@ -464,6 +466,18 @@ text-yellow-500
   </>
 ) : null}
 
+{product.cabinOptions ? <>
+<label htmlFor="tour-cabin" className="mt-6 block font-bold">Cabin Preference</label>
+<select id="tour-cabin" value={selectedTier ?? product.cabinOptions.length - 1} onChange={(event) => setSelectedTier(Number(event.target.value))} className="mt-3 w-full rounded-xl border px-4 py-3">
+{product.cabinOptions.map((name, index) => <option key={name} value={index}>{name}</option>)}
+</select>
+</> : null}
+{product.tripTypes ? <>
+<label htmlFor="tour-trip-type" className="mt-6 block font-bold">Trip Type</label>
+<select id="tour-trip-type" value={tripType} onChange={(event) => setTripType(event.target.value)} className="mt-3 w-full rounded-xl border px-4 py-3">
+{product.tripTypes.map((type) => <option key={type} value={type}>{type}</option>)}
+</select>
+</> : null}
 <label
 htmlFor="tour-guests"
 className="
@@ -531,7 +545,7 @@ p-5
 
 <p className="text-sm text-gray-500">
 
-Total Price ({guests} Pax)
+{isPriceOnRequest(product) ? "Availability & quotation" : `Total Price (${guests} Pax)`}
 
 </p>
 
@@ -545,7 +559,7 @@ text-yellow-500
 "
 >
 
-{quote ? formatTourDisplayPrice(product, quote.totalPrice, quote.guests) : "Please confirm the price"}
+{isPriceOnRequest(product) ? formatTourDisplayPrice(product) : quote ? formatTourDisplayPrice(product, quote.totalPrice, quote.guests) : "Please confirm the price"}
 
 </p>
 
@@ -579,7 +593,7 @@ hover:bg-yellow-300
 
 >
 
-Book via WhatsApp
+{isPriceOnRequest(product) ? REQUEST_PRICE_CTA : "Book via WhatsApp"}
 
 </a>
 

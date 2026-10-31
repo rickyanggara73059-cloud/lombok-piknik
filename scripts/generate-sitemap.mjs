@@ -17,6 +17,7 @@ const tours = [
   "lombok-island-4d3n",
   "north-lombok-3d2n",
   "whale-shark-sumbawa",
+  "komodo-sailing-2d1n",
   "komodo-sailing-3d2n",
   "lombok-labuan-bajo-4d3n"
 ];

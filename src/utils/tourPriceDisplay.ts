@@ -1,12 +1,17 @@
 import type { TourCatalogueProduct } from "../data/tourCatalogue";
 import { formatEstimatedUsd, formatUsd, toEstimatedUsd } from "./formatCurrency";
 
+export const REQUEST_PRICE_LABEL = "Price on Request – Subject to Boat Availability";
+export const REQUEST_PRICE_CTA = "Check Availability & Get Price via WhatsApp";
+export const isPriceOnRequest = (product: TourCatalogueProduct) => product.pricingPolicy === "on_request";
+
 // Canonical USD amount carries the approved adjustment once per person.
 export function getTourUsdPrice(product: TourCatalogueProduct, amount = product.priceIdr, guests = 1): number {
   if (product.priceBasis === "per_boat") return product.usdDisplay.amount;
   return toEstimatedUsd(amount) + (product.priceUsd - toEstimatedUsd(product.priceIdr)) * guests;
 }
 export function formatTourDisplayPrice(product: TourCatalogueProduct, amount = product.priceIdr, guests = 1): string {
+  if (isPriceOnRequest(product)) return REQUEST_PRICE_LABEL;
   return product.priceBasis === "per_boat"
     ? "US" + formatUsd(product.usdDisplay.amount) + " per boat"
     : "US" + formatUsd(getTourUsdPrice(product, amount, guests));

@@ -2,7 +2,7 @@ import type { Product } from "../types/product";
 export type { Product } from "../types/product";
 
 // No verified ratings/review counts: 0 means unavailable, not a customer score.
-// USD selling estimates include the approved US$28 adjustment once per person.
+// USD estimates use the existing application rate; product-specific USD amounts are retained.
 export const products: Product[] = [
   {
     "id": "lombok-island-5d4n",
@@ -12,7 +12,7 @@ export const products: Product[] = [
     "location": "Lombok",
     "duration": "5 Days / 4 Nights",
     "priceIdr": 6000000,
-    "priceUsd": 381,
+    "priceUsd": 353,
     "rating": 0,
     "reviewsCount": 0,
     "image": "https://images.unsplash.com/photo-1527369977102-ea8c4a693f85",
@@ -113,7 +113,7 @@ export const products: Product[] = [
     "location": "Lombok",
     "duration": "4 Days / 3 Nights",
     "priceIdr": 5000000,
-    "priceUsd": 322,
+    "priceUsd": 294,
     "rating": 0,
     "reviewsCount": 0,
     "image": "https://images.unsplash.com/photo-1676938007570-cdff052a9841",
@@ -201,7 +201,7 @@ export const products: Product[] = [
     "location": "North Lombok",
     "duration": "3 Days / 2 Nights",
     "priceIdr": 2350000,
-    "priceUsd": 166,
+    "priceUsd": 138,
     "rating": 0,
     "reviewsCount": 0,
     "image": "https://images.unsplash.com/photo-1725163938260-68e159b65fdc",
@@ -279,12 +279,12 @@ export const products: Product[] = [
     "location": "Saleh Bay, Sumbawa",
     "duration": "1 Day",
     "priceIdr": 3000000,
-    "priceUsd": 204,
+    "priceUsd": 232,
     "rating": 0,
     "reviewsCount": 0,
-    "image": "/images/tours/whale-shark/saleh-bay-whale-shark.jpg",
+    "image": "/images/tours/whale-shark/whale-shark-dji-0612.jpg",
     "featured": false,
-    "description": "A marine adventure from Labuhan Jambu to Saleh Bay, Sumbawa, featuring a whale shark experience, snorkeling and swimming. Minimum: 2 persons. Photo: Egaryan Saadi, CC BY-SA 4.0. Source: https://commons.wikimedia.org/wiki/File:Hiu_Paus_Teluk_Saleh_Sumbawa.jpg License: https://creativecommons.org/licenses/by-sa/4.0/",
+    "description": "A marine adventure from Labuhan Jambu to Saleh Bay, Sumbawa, featuring a whale shark experience, snorkeling and swimming. Minimum: 2 persons.",
     "highlights": [
       "Whale Shark Experience"
     ],
@@ -306,15 +306,75 @@ export const products: Product[] = [
         ]
       }
     ],
-    "imageSource": "https://commons.wikimedia.org/wiki/File:Hiu_Paus_Teluk_Saleh_Sumbawa.jpg",
-    "imageCredit": {
-      "author": "Egaryan Saadi",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
-    },
+    "imageSource": "DJI_0612.JPG (provided by owner)",
     "whatsappMessage": "Hello Lombok Awesome Tour, I want to book Whale Shark Sumbawa. Minimum: 2 persons."
   }
   ,
+  {
+    "id": "sailing-trip-komodo-2d1n",
+    "slug": "komodo-sailing-2d1n",
+    "title": "Sailing Trip Komodo 2D1N",
+    "category": "LABUAN BAJO & KOMODO",
+    "location": "Labuan Bajo & Komodo",
+    "duration": "2 Days / 1 Night",
+    "pricingPolicy": "on_request",
+    "tripTypes": [
+        "Open Trip",
+        "Private Trip"
+    ],
+    "priceIdr": 0,
+    "priceUsd": 0,
+    "rating": 0,
+    "reviewsCount": 0,
+    "image": "/images/destinations/labuan-bajo-komodo/DSC05461.jpeg",
+    "featured": false,
+    "description": "Price on Request – Subject to Boat Availability",
+    "overview": "Available as Open Trip or Private Trip. The itinerary can change depending on conditions during the trip.",
+    "highlights": [
+        "Kelor Island",
+        "Rinca Island",
+        "Kalong Island",
+        "Padar Island",
+        "Long Beach / Pink Beach",
+        "Taka Makassar",
+        "Manta Point"
+    ],
+    "included": [
+        "All meals during the sailing trip",
+        "Snorkelling set",
+        "Airport / Hotel Pick Up & Drop Off",
+        "Snack, Coffee, Tea & Mineral Water",
+        "Tour Leader & Local Guide",
+        "Documentation (Open Trip Only)"
+    ],
+    "excludes": [
+        "Flights in and out of Labuan Bajo",
+        "Hotel & Accommodation on Land",
+        "Komodo National Park Entrance Ticket, Ranger, etc.",
+        "Personal Expense",
+        "Tips for Crew (Optional)"
+    ],
+    "itinerary": [
+        {
+            "title": "Day 1",
+            "entries": [
+                "Kelor Island",
+                "Rinca Island",
+                "Kalong Island"
+            ]
+        },
+        {
+            "title": "Day 2",
+            "entries": [
+                "Padar Island",
+                "Long Beach / Pink Beach",
+                "Taka Makassar",
+                "Manta Point"
+            ]
+        }
+    ],
+    "whatsappMessage": "Hello Lombok Awesome Tour, I would like information about Sailing Trip Komodo 2D1N. Please confirm boat availability and the current price quotation."
+  },
   {
     id: "sailing-trip-komodo-3d2n",
     slug: "komodo-sailing-3d2n",
@@ -322,62 +382,53 @@ export const products: Product[] = [
     category: "LABUAN BAJO & KOMODO",
     location: "Labuan Bajo & Komodo",
     duration: "3 Days / 2 Nights",
-    priceIdr: 5500000,
-    priceUsd: 352,
+    pricingPolicy: "on_request",
+    priceIdr: 0,
+    priceUsd: 0,
     rating: 0,
     reviewsCount: 0,
     image: "/images/destinations/labuan-bajo-komodo/DSC05461.jpeg",
     featured: false,
-    description: "Starting price IDR 5,500,000 / pax, for a group of 13 pax. Brochure rates are tiered by group size: 10 pax — IDR 6,500,000 / pax; 11 pax — IDR 6,250,000 / pax; 12 pax — IDR 6,000,000 / pax; 13 pax — IDR 5,500,000 / pax. Minimum 10 pax. Rates are per person at the stated group size.",
+    description: "Price on Request – Subject to Boat Availability",
     highlights: ["Kelor Island", "Manjarite Island", "Kalong Island", "Padar Island", "Long Beach / Pink Beach", "Komodo Island", "Taka Makassar", "Manta Point", "Siaba / Sebayur Island"],
     overview: "Explore Kelor, Manjarite and Kalong on Day 1, followed by Padar, Long Beach / Pink Beach, Komodo, Taka Makassar and Manta Point on Day 2. The final day lists Siaba / Sebayur Island.",
     included: ["Transportasi", "Kapal AC 3D2N", "Makan selama trip", "Mineral water", "Coffee / tea", "Jus", "Snack", "Guide", "Gear snorkeling", "Crew kapal", "Life jacket", "P3K di kapal"],
     excludes: ["Taman Nasional Komodo", "Tiket pesawat", "Hotel", "Tips crew & guide", "Tiket wisata TN Komodo"],
     minimum: "10 pax",
-    pricingTiers: [
-      { name: "10 pax", priceIdr: 6500000, groupSize: 10 },
-      { name: "11 pax", priceIdr: 6250000, groupSize: 11 },
-      { name: "12 pax", priceIdr: 6000000, groupSize: 12 },
-      { name: "13 pax", priceIdr: 5500000, groupSize: 13 }
-    ],
+    maxPeople: 13,
     itinerary: [
       { title: "Day 1", entries: ["Kelor Island", "Manjarite Island", "Kalong Island"] },
       { title: "Day 2", entries: ["Padar Island", "Long Beach / Pink Beach", "Komodo Island", "Taka Makassar", "Manta Point"] },
       { title: "Day 3", entries: ["Siaba / Sebayur Island"] }
     ],
-    whatsappMessage: "Hello Lombok Awesome Tour, I would like information about Sailing Trip Komodo 3D2N. Please confirm the group-size rate: 10 pax IDR 6,500,000 / pax; 11 pax IDR 6,250,000 / pax; 12 pax IDR 6,000,000 / pax; 13 pax IDR 5,500,000 / pax. Minimum 10 pax."
+    whatsappMessage: "Hello Lombok Awesome Tour, please confirm boat availability and the current price quotation."
   },
   {
     id: "lombok-labuan-bajo-sailing-4d3n",
+    cabinOptions: ["Private Cabin Lower Deck", "Sharing Cabin Upper Deck", "Sharing Cabin Main Deck", "Sharing Cabin Lower Deck", "Sharing Room Deck"],
     slug: "lombok-labuan-bajo-4d3n",
     title: "Lombok – Labuan Bajo Sailing Trip 4D3N",
     category: "LOMBOK & LABUAN BAJO",
     location: "Lombok & Labuan Bajo",
     duration: "4 Days / 3 Nights",
-    priceIdr: 4750000,
-    priceUsd: 307,
+    pricingPolicy: "on_request",
+    priceIdr: 0,
+    priceUsd: 0,
     rating: 0,
     reviewsCount: 0,
     image: "/images/destinations/labuan-bajo-komodo/YAR07634.jpeg",
     featured: false,
-    description: "Starting price IDR 4,750,000 / pax for Sharing Room Deck. Other brochure cabin rates per pax: Private Cabin Lower Deck — IDR 7,250,000; Sharing Cabin Upper Deck — IDR 6,750,000; Sharing Cabin Main Deck — IDR 6,250,000; Sharing Cabin Lower Deck — IDR 5,750,000. Price depends on cabin selection.",
+    description: "Price on Request – Subject to Boat Availability",
     highlights: ["Meeting Point Senggigi", "Labuan Lombok", "Gili Kondo", "Kenawa Island", "Whale Shark", "Satonda Island", "Manta", "Taka Makassar", "Komodo", "Pink Beach", "Padar Island", "Kalong Island", "Strawberry Rock", "Majarite", "Kelor Island", "Finish Labuan Bajo"],
     overview: "Travel from Lombok to Labuan Bajo over four days. The itinerary begins at Senggigi and Labuan Lombok, with Gili Kondo and Kenawa Island on Day 1, followed by Whale Shark and Satonda Island on Day 2. Day 3 lists the Komodo-area stops and an overnight around Rinca / Kalong. Day 4 includes Strawberry Rock, Majarite and Kelor before finishing in Labuan Bajo.",
     included: ["Free pick up from Bangsal, Senggigi, Mataram, Kuta Lombok, Tete Batu", "All activities / excursion according to itinerary", "All meals: Breakfast, Lunch, Dinner", "Free flow mineral water", "Tea and coffee", "Snorkeling equipment", "Linen & bath towel", "Guide and Ranger", "Basic First Aid"],
     excludes: ["Flight ticket", "Hotel accommodation", "Travel insurance", "Personal expense", "Alcohol & snack", "Tipping for crew & guide", "Entrance fee", "Entrance fee TN Komodo"],
-    pricingTiers: [
-      { name: "Private Cabin Lower Deck", priceIdr: 7250000 },
-      { name: "Sharing Cabin Upper Deck", priceIdr: 6750000 },
-      { name: "Sharing Cabin Main Deck", priceIdr: 6250000 },
-      { name: "Sharing Cabin Lower Deck", priceIdr: 5750000 },
-      { name: "Sharing Room Deck", priceIdr: 4750000 }
-    ],
     itinerary: [
       { title: "Day 1", entries: ["Meeting Point Senggigi", "Labuan Lombok", "Gili Kondo", "Kenawa Island"] },
       { title: "Day 2", entries: ["Whale Shark", "Satonda Island"] },
       { title: "Day 3", entries: ["Manta", "Taka Makassar", "Komodo", "Pink Beach", "Padar Island", "Kalong Island", "Overnight sekitar Rinca / Kalong"] },
       { title: "Day 4", entries: ["Strawberry Rock", "Majarite", "Kelor Island", "Finish Labuan Bajo"] }
     ],
-    whatsappMessage: "Hello Lombok Awesome Tour, I would like information about Lombok – Labuan Bajo Sailing Trip 4D3N. Starting price is IDR 4,750,000 / pax for Sharing Room Deck; other cabin prices vary. Please confirm cabin selection and current details."
+    whatsappMessage: "Hello Lombok Awesome Tour, please confirm boat availability and the current price quotation."
   }
 ];

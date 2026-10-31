@@ -1,6 +1,6 @@
 import { products } from "../data/products";
 import { SITE } from "./site";
-import { formatTourPriceText, getTourUsdPrice } from "../utils/tourPriceDisplay";
+import { formatTourPriceText, getTourUsdPrice, isPriceOnRequest } from "../utils/tourPriceDisplay";
 
 export const productSchema = products.filter((product) => !product.isPlaceholder).map((product) => ({
   "@context": "https://schema.org",
@@ -18,10 +18,10 @@ export const productSchema = products.filter((product) => !product.isPlaceholder
     reviewCount: product.reviewsCount,
   },
 
-  offers: {
+  ...(!isPriceOnRequest(product) ? { offers: {
     "@type": "Offer",
     price: getTourUsdPrice(product),
     priceCurrency: "USD",
     description: "Estimated USD display price; original IDR base retained.",
-  },
+  } } : {}),
 }));

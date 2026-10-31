@@ -1,5 +1,5 @@
 import type { TourCatalogueProduct } from "../data/tourCatalogue";
-import { formatTourDisplayPrice, formatTourPriceText } from "./tourPriceDisplay";
+import { formatTourDisplayPrice, formatTourPriceText, isPriceOnRequest } from "./tourPriceDisplay";
 
 // Uses the six existing selling records and the explicitly requested provisional
 // speedboat references; never imports PDF/operator rates or other candidate inventory.
@@ -18,7 +18,7 @@ export function getGuestOptions(product: TourCatalogueProduct): number[] {
   }
   const minimum = getMinimumGuests(product) ?? 1;
   // Retain the existing guest selector range; this is not capacity/availability.
-  return Array.from({ length: Math.max(10, minimum) - minimum + 1 }, (_, index) => minimum + index);
+  return Array.from({ length: (product.maxPeople ?? Math.max(10, minimum)) - minimum + 1 }, (_, index) => minimum + index);
 }
 
 export function getDefaultTierIndex(product: TourCatalogueProduct): number {
@@ -27,6 +27,7 @@ export function getDefaultTierIndex(product: TourCatalogueProduct): number {
 }
 
 export function getTourQuote(product: TourCatalogueProduct, guests: number, tierIndex = getDefaultTierIndex(product)) {
+  if (isPriceOnRequest(product)) return undefined;
   if (!Number.isInteger(guests) || guests < (getMinimumGuests(product) ?? 1)) return undefined;
   if (product.priceBasis === "per_boat") {
     if (guests > product.groupRange.max) return undefined;
@@ -45,7 +46,12 @@ export function getTourQuote(product: TourCatalogueProduct, guests: number, tier
 
 export type TourQuote = NonNullable<ReturnType<typeof getTourQuote>>;
 
+export function getAvailabilityMessage(product: TourCatalogueProduct, guests?: number, tripType?: string, cabin?: string): string {
+  return `Hello Lombok Awesome Tour, I would like information about ${product.title}.\nTravel date: [please specify]\nTrip type: ${tripType ?? "Open Trip or Private Trip [please specify]"}\nNumber of participants: ${guests ?? "[please specify]"}\n${cabin ? `Cabin preference: ${cabin}\n` : ""}Please confirm boat availability and the current price quotation.`;
+}
+
 export function getTourBookingMessage(product: TourCatalogueProduct, quote: TourQuote): string {
+  if (isPriceOnRequest(product)) return getAvailabilityMessage(product, quote.guests);
   if (product.priceBasis === "per_boat") {
     return `${formatTourPriceText(product.whatsappMessage, product)}\n\nGuest: ${quote.guests} persons\nProvisional total: ${formatTourDisplayPrice(product)}\nPrice and schedule pending operator verification. Please confirm availability and booking details.`;
   }

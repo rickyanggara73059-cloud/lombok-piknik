@@ -3,8 +3,8 @@ import { X, MapPin, Clock3, Star, ArrowRight } from "lucide-react";
 
 import type { TourCatalogueProduct } from "../../data/tourCatalogue";
 
-import { formatTourDisplayPrice, formatTourPriceText } from "../../utils/tourPriceDisplay";
-import { getGuestOptions } from "../../utils/tourBooking";
+import { formatTourDisplayPrice, formatTourPriceText, isPriceOnRequest, REQUEST_PRICE_CTA } from "../../utils/tourPriceDisplay";
+import { getAvailabilityMessage, getGuestOptions } from "../../utils/tourBooking";
 import { SITE } from "../../config/site";
 
 
@@ -26,6 +26,7 @@ export default function PackageDetailModal({
 }: PackageDetailModalProps) {
 
 
+  const [tripType, setTripType] = useState("Open Trip");
   const [pax, setPax] = useState(1);
 
 
@@ -38,7 +39,7 @@ export default function PackageDetailModal({
 
 
   const whatsappMessage = encodeURIComponent(
-`Hello ${SITE.name} 👋
+isPriceOnRequest(product) ? getAvailabilityMessage(product, guests, product.tripTypes ? tripType : undefined) : `Hello ${SITE.name} 👋
 
 I want to book this tour.
 
@@ -253,6 +254,12 @@ Please send me more information.
 
 
 
+          {product.tripTypes ? <>
+            <label htmlFor="modal-trip-type" className="mt-6 block font-bold">Trip Type</label>
+            <select id="modal-trip-type" value={tripType} onChange={(event) => setTripType(event.target.value)} className="mt-3 w-full rounded-xl border px-4 py-3">
+              {product.tripTypes.map((type) => <option key={type} value={type}>{type}</option>)}
+            </select>
+          </> : null}
           {/* TOTAL */}
 
           <div
@@ -265,7 +272,7 @@ Please send me more information.
           >
 
             <p className="text-sm text-gray-500">
-              {isSpeedboat ? "Provisional total" : "Estimated total price"} ({guests} Pax)
+              {isPriceOnRequest(product) ? "Availability & quotation" : `${isSpeedboat ? "Provisional total" : "Estimated total price"} (${guests} Pax)`}
             </p>
 
 
@@ -307,7 +314,7 @@ Please send me more information.
             "
           >
 
-            Book via WhatsApp
+            {isPriceOnRequest(product) ? REQUEST_PRICE_CTA : "Book via WhatsApp"}
 
             <ArrowRight size={18}/>
 

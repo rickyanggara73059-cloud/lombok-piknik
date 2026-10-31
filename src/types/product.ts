@@ -12,6 +12,9 @@ export interface Product {
   duration: string;
 
   // Lombok Awesome Tour selling price; never an operator/cabin source rate.
+  pricingPolicy?: "on_request";
+  cabinOptions?: string[];
+  tripTypes?: ("Open Trip" | "Private Trip")[];
   priceIdr: number;
   priceUsd: number;
 

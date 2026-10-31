@@ -41,6 +41,12 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+  <loc>https://lombok-piknik.vercel.app/tour/komodo-sailing-2d1n</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
   <loc>https://lombok-piknik.vercel.app/tour/komodo-sailing-3d2n</loc>
   <changefreq>weekly</changefreq>
   <priority>0.9</priority>

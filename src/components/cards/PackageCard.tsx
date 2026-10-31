@@ -2,10 +2,12 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 import type { TourCatalogueProduct } from "../../data/tourCatalogue";
-import { formatTourDisplayPrice, formatTourPriceText } from "../../utils/tourPriceDisplay";
+import { formatTourDisplayPrice, formatTourPriceText, isPriceOnRequest, REQUEST_PRICE_CTA } from "../../utils/tourPriceDisplay";
 
 
 import { SITE } from "../../config/site";
+
+import { getAvailabilityMessage } from "../../utils/tourBooking";
 
 import Card from "../common/Card";
 
@@ -32,7 +34,7 @@ export default function PackageCard({
 
 
   const whatsappMessage = encodeURIComponent(
-    formatTourPriceText(product.whatsappMessage, product)
+    isPriceOnRequest(product) ? getAvailabilityMessage(product) : formatTourPriceText(product.whatsappMessage, product)
   );
 
 
@@ -281,7 +283,7 @@ export default function PackageCard({
                   text-gray-400
                 "
               >
-                {product.priceBasis === "per_boat" ? "Provisional price per boat" : "Starting From / Pax"}
+                {isPriceOnRequest(product) ? product.tripTypes?.join(" / ") : product.priceBasis === "per_boat" ? "Provisional price per boat" : "Starting From / Pax"}
               </p>
 
 
@@ -307,7 +309,7 @@ export default function PackageCard({
                 "
               >
 
-                {product.priceBasis === "per_boat" ? "Pending operator verification" : "Estimated USD price"}
+                {isPriceOnRequest(product) ? null : product.priceBasis === "per_boat" ? "Pending operator verification" : "Estimated USD price"}
 
               </p>
 
@@ -383,7 +385,7 @@ export default function PackageCard({
 
               >
 
-                Book
+                {isPriceOnRequest(product) ? REQUEST_PRICE_CTA : "Book"}
 
                 <ArrowRight size={14}/>
 
