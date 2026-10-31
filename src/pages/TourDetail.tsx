@@ -1,3 +1,4 @@
+import { responsivePhoto } from "../utils/responsivePhoto";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useParams } from "react-router-dom";
@@ -124,6 +125,10 @@ content={formatTourPriceText(product.description, product)}
 {product.image ? <img
 
 src={product.image ?? undefined}
+{...responsivePhoto(product.image, "100vw")}
+decoding="async"
+loading="eager"
+fetchPriority="high"
 
 alt={product.title}
 

@@ -1,3 +1,4 @@
+import { responsivePhoto } from "../../utils/responsivePhoto";
 import { useEffect, useState } from "react";
 import { SITE } from "../../config/site";
 
@@ -56,11 +57,12 @@ const images: { src: string; desktopSrc?: string; alt: string; position: string 
 ];
 
 export default function Hero() {
-  const [current, setCurrent] = useState(0);
+  const [{ current, previous }, setSlide] = useState<{ current: number; previous: number | null }>({ current: 0, previous: null });
+  const [heroLoaded, setHeroLoaded] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
+      setSlide((slide) => ({ current: (slide.current + 1) % images.length, previous: slide.current }));
     }, 12000);
 
     return () => clearInterval(timer);
@@ -74,16 +76,19 @@ export default function Hero() {
       {/* Background Slider */}
       <div className="absolute inset-0 w-full min-w-0 max-w-full overflow-hidden">
 
-        {images.map((image, index) => (
+        {images.map((image, index) => (index === current || index === previous || (heroLoaded && index === (current + 1) % images.length)) && (
           <picture key={image.src}>
             {image.desktopSrc && (
-              <source media="(min-width: 1024px)" srcSet={image.desktopSrc} />
+              <source media="(min-width: 1024px)" srcSet={responsivePhoto(image.desktopSrc, "100vw").srcSet ?? image.desktopSrc} sizes="100vw" />
             )}
             <img
               src={image.src}
+              {...responsivePhoto(image.src, "100vw")}
+              data-hero-image="true"
+              onLoad={() => { if (index === current) setHeroLoaded(true); }}
               alt={image.alt}
-              loading={index === 0 ? "eager" : "lazy"}
-              fetchPriority={index === 0 ? "high" : "auto"}
+              loading={index === current ? "eager" : "lazy"}
+              fetchPriority={index === 0 && current === 0 ? "high" : "low"}
               decoding="async"
               className={`
                 absolute
@@ -130,7 +135,7 @@ export default function Hero() {
             {images.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrent(index)}
+                onClick={() => setSlide((slide) => ({ current: index, previous: slide.current }))}
                 className={`h-2 rounded-full transition-all duration-500 ${
                   current === index
                     ? "w-10 bg-yellow-400"

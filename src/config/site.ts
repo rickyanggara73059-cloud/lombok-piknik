@@ -18,7 +18,7 @@ export const SITE = {
   heroImage: "/images/hero/hero.webp",
 
   // Social Media
-  facebook: "",
+  facebook: "https://web.facebook.com/LombokAwesomeTour/",
   instagram: "",
   youtube: "",
   tiktok: "",

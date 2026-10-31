@@ -36,6 +36,7 @@ export default function Footer() {
           <a
             href={`https://wa.me/${SITE.whatsapp}`}
             target="_blank"
+            rel="noopener noreferrer"
             className="
               mt-6
               inline-block
@@ -50,6 +51,23 @@ export default function Footer() {
           >
             Contact Us
           </a>
+
+          {SITE.facebook && (
+            <div className="mt-6">
+              <a
+                href={SITE.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-gray-400 transition hover:text-yellow-400"
+                aria-label="Lombok Awesome Tour on Facebook (opens in a new tab)"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                  <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.095 10.125 24v-8.437H7.078v-3.49h3.047v-2.66c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.971H15.83c-1.49 0-1.955.931-1.955 1.887v2.263h3.328l-.532 3.49h-2.796V24C19.612 23.095 24 18.1 24 12.073Z" />
+                </svg>
+                Facebook
+              </a>
+            </div>
+          )}
 
         </div>
 

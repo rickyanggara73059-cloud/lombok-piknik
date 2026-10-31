@@ -1,3 +1,4 @@
+import { responsivePhoto } from "../../utils/responsivePhoto";
 import { useState } from "react";
 import { X, MapPin, Clock3, Star, ArrowRight } from "lucide-react";
 
@@ -113,6 +114,8 @@ Please send me more information.
 
         <img
           src={product.image}
+{...responsivePhoto(product.image, "(min-width: 1024px) 900px, 100vw")}
+decoding="async"
           alt={product.title}
           className="
             h-72

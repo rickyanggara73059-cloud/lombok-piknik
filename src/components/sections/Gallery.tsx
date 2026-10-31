@@ -1,3 +1,4 @@
+import { responsivePhoto } from "../../utils/responsivePhoto";
 import { useState } from "react";
 import Container from "../common/Container";
 import SectionTitle from "../common/SectionTitle";
@@ -77,6 +78,8 @@ export default function Gallery() {
           <img
 
             src={selectedImage}
+{...responsivePhoto(selectedImage, "(min-width: 1280px) 1152px, 100vw")}
+decoding="async"
 
             alt="Gallery Preview"
 

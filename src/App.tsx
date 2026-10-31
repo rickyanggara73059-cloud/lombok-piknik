@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
+import FloatingWhatsApp from "./components/common/FloatingWhatsApp";
 
 import Hero from "./components/sections/Hero";
 import TourSection from "./components/sections/TourSection";
@@ -143,6 +144,7 @@ function App() {
 
 
       <Footer />
+      <FloatingWhatsApp />
 
     </>
   );

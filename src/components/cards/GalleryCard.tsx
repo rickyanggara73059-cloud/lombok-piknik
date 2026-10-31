@@ -1,3 +1,4 @@
+import { responsivePhoto } from "../../utils/responsivePhoto";
 import { motion } from "framer-motion";
 import type { GalleryItem } from "../../types/gallery";
 
@@ -57,6 +58,9 @@ export default function GalleryCard({
       <motion.img
 
         src={item.image}
+{...responsivePhoto(item.image, "(min-width: 1280px) 390px, (min-width: 1024px) calc((100vw - 112px) / 3), (min-width: 768px) calc((100vw - 96px) / 2), calc(100vw - 48px)")}
+decoding="async"
+loading="lazy"
 
         alt={item.title}
 
