@@ -1,5 +1,5 @@
 import { responsivePhoto } from "../../utils/responsivePhoto";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 import type { TourCatalogueProduct } from "../../data/tourCatalogue";
@@ -111,7 +111,7 @@ export default function PackageCard({
           {product.image ? <img
 
             src={product.image ?? undefined}
-{...responsivePhoto(product.image, "(min-width: 1280px) 390px, (min-width: 768px) calc((100vw - 96px) / 2), calc(100vw - 48px)")}
+{...responsivePhoto(product.image, "(min-width: 1280px) 374px, (min-width: 1024px) calc((100vw - 128px) / 2), (min-width: 768px) calc((100vw - 96px) / 2), (min-width: 640px) calc(100vw - 64px), calc(100vw - 48px)")}
 decoding="async"
 
             alt={product.title}

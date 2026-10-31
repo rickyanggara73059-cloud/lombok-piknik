@@ -1,3 +1,4 @@
+import { LazyMotion, domAnimation } from "framer-motion";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom/client";
@@ -14,7 +15,9 @@ ReactDOM.createRoot(
 
     <BrowserRouter>
 
-      <App />
+      <LazyMotion features={domAnimation} strict>
+        <App />
+      </LazyMotion>
 
     </BrowserRouter>
 

@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/layout/Navbar";
@@ -12,8 +13,8 @@ import GoogleReviews from "./components/sections/GoogleReviews";
 import FAQ from "./components/sections/FAQ";
 import Contact from "./components/sections/Contact";
 
-import TourDetail from "./pages/TourDetail";
-import Tours from "./pages/Tours";
+const TourDetail = lazy(() => import("./pages/TourDetail"));
+const Tours = lazy(() => import("./pages/Tours"));
 
 import { Helmet } from "react-helmet-async";
 
@@ -129,7 +130,7 @@ function App() {
 
 
       <Routes>
-        <Route path="/tours" element={<Tours />} />
+        <Route path="/tours" element={<Suspense fallback={<div className="min-h-screen" />}><Tours /></Suspense>} />
 
         <Route
           path="/"
@@ -139,7 +140,7 @@ function App() {
 
         <Route
           path="/tour/:slug"
-          element={<TourDetail />}
+          element={<Suspense fallback={<div className="min-h-screen" />}><TourDetail /></Suspense>}
         />
 
       </Routes>

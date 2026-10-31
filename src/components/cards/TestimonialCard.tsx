@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { Star } from "lucide-react";
 
 import type { Testimonial } from "../../types/testimonial";

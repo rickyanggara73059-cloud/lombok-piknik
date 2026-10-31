@@ -329,5 +329,11 @@ export const responsivePhotos: Record<string, {fallbackSrc: string; width: numbe
     "width": 2200,
     "height": 1473,
     "srcSet": "/images/responsive/11036ba6a79d9920-320-q78.webp 320w, /images/responsive/11036ba6a79d9920-480.webp 480w, /images/responsive/11036ba6a79d9920-640-q78.webp 640w, /images/responsive/11036ba6a79d9920-768-q78.webp 768w, /images/responsive/11036ba6a79d9920-960.webp 960w, /images/responsive/11036ba6a79d9920-1280-q78.webp 1280w, /images/responsive/11036ba6a79d9920-1600.webp 1600w"
+  },
+  "/images/tours/whale-shark/whale-shark-dji-0612.jpg": {
+    "fallbackSrc": "/images/responsive/1922fa2e654ca88d-640-q78.webp",
+    "width": 2250,
+    "height": 4000,
+    "srcSet": "/images/responsive/1922fa2e654ca88d-320-q78.webp 320w, /images/responsive/1922fa2e654ca88d-480-q78.webp 480w, /images/responsive/1922fa2e654ca88d-640-q78.webp 640w, /images/responsive/1922fa2e654ca88d-768-q78.webp 768w, /images/responsive/1922fa2e654ca88d-960-q78.webp 960w, /images/responsive/1922fa2e654ca88d-1280-q78.webp 1280w, /images/responsive/1922fa2e654ca88d-1600-q78.webp 1600w"
   }
 };
