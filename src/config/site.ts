@@ -7,11 +7,12 @@ export const SITE = {
   // Contact
   whatsapp: "6287816231153",
   phone: "+62 878-1623-1153",
-  email: "hello@awesometour.id",
+  email: "rinjaniawesome123@gmail.com",
 
   // Website
   website: "https://lombok-piknik.vercel.app/", // production canonical host
   address: "Lombok, West Nusa Tenggara, Indonesia",
+  googleMaps: "https://maps.app.goo.gl/RxqxMVLPiyZVMaa88?g_st=ac",
 
   // Assets
   logo: "/images/branding/Lombok Awesome Tour Badge (1).png",
